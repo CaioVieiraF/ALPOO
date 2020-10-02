@@ -1,6 +1,6 @@
-import navigation.Cadastro;
+import javax.swing.JFrame;
 
-import javax.swing.*;
+import navigation.InfoProfessor;
 
 public class Janela extends JFrame {
 
@@ -8,9 +8,10 @@ public class Janela extends JFrame {
     int SCREEN_HEIGHT = 600;
 
     public Janela(){
-        add(new Cadastro());
+    	add(new InfoProfessor());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 }
