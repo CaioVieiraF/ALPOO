@@ -6,10 +6,12 @@ import navigation.*;
 import java.awt.*;
 
 public class Janela extends JFrame {
+    int SCREEN_WIDTH = 900;
+    int SCREEN_HEIGHT = 600;
 
     JPanel navigation = new JPanel();
     JPanel infoProfessor = new InfoProfessor();
-    JPanel cadastro = new Cadastro();
+    JPanel cadastro = new Cadastro(SCREEN_WIDTH, SCREEN_HEIGHT);
     JPanel login = new Login();
     JPanel cursos = new Cursos();
     JPanel diciplinas = new Diciplinas();
@@ -24,8 +26,6 @@ public class Janela extends JFrame {
     JMenuItem diciplinasMenu = new JMenuItem("Diciplinas");
     JMenuItem infoAlunoMenu = new JMenuItem("Info do aluno");
 
-    int SCREEN_WIDTH = 900;
-    int SCREEN_HEIGHT = 600;
 
     public Janela(){
 
@@ -58,7 +58,6 @@ public class Janela extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
         setLocationRelativeTo(null);
-        setLayout(null);
         setVisible(true);
     }
 }
