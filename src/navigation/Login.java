@@ -19,10 +19,10 @@ public class Login extends JPanel implements ActionListener{
 	JLabel lSenha = new JLabel("Digite a senha");
 	JPasswordField senha = new JPasswordField("Senha");
 		
-	void Login(){
+	public Login(){
 		setLayout(null);
 		
-		//setBounds(300,300,600,900);
+		
 		bLogar.setBounds(10,10,10,10);
 		bVoltar.setBounds(10,10,10,10);
 		beSenha.setBounds(10,10,10,10);
