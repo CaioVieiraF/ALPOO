@@ -58,6 +58,7 @@ public class Janela extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
         setLocationRelativeTo(null);
+        setLayout(null);
         setVisible(true);
     }
 }
