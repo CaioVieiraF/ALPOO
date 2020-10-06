@@ -33,44 +33,19 @@ public class Diciplinas extends JPanel{
         qua.setBounds(480, 380, 200, 30);
         qui.setBounds(480, 420, 200, 30);
         sex.setBounds(480, 460, 200, 30);
-        
         materias.setBorder(BorderFactory.createEmptyBorder());
         grade.setBorder(BorderFactory.createEmptyBorder());
-        grade.setFont(util.FONT_BOLD);
-        materias.setBackground(util.BUTTON_COLOR);
-
-        materias.setFont(util.FONT_BOLD);
-        carga.setFont(util.FONT_BOLD);
-        professor.setFont(util.FONT_BOLD);
-        np1.setFont(util.FONT_BOLD);
-        np2.setFont(util.FONT_BOLD);
-        seg.setFont(util.FONT_BOLD);
-        ter.setFont(util.FONT_BOLD);
-        qua.setFont(util.FONT_BOLD);
-        qui.setFont(util.FONT_BOLD);
-        sex.setFont(util.FONT_BOLD);
-        seg.setBackground(util.FUNDO);
-        ter.setBackground(util.FUNDO);
-        qua.setBackground(util.FUNDO);
-        qui.setBackground(util.FUNDO);
-        sex.setBackground(util.FUNDO);
-        seg.setBackground(util.FUNDO);
-        ter.setBackground(util.FUNDO);
-        qua.setBackground(util.FUNDO);
-        qui.setBackground(util.FUNDO);
-        sex.setBackground(util.FUNDO);
+        JComponent[] jcomponent = {grade, carga,materias, professor, np1, np2, seg, ter, qua, qui, sex};
+        setComponents(jcomponent);
         
-        add(grade);
-        add(materias);
-        add(professor);
-        add(carga);
-        add(np1);
-        add(np2);
-        add(seg);
-        add(ter);
-        add(qua);
-        add(qui);
-        add(sex);
-        
-    }
+        materias.setBackground(util.BUTTON_COLOR);        
+	}
+	
+	public void setComponents(JComponent[] itens) {
+		for(int i = 0; i < itens.length; i++) {
+			itens[i].setBackground(util.FUNDO);
+			itens[i].setFont(util.FONT_BOLD);
+			add(itens[i]);	
+		}
+	}
 }

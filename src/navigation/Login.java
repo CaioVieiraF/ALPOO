@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -35,31 +36,19 @@ public class Login extends JPanel {
 		email.setBounds(300,140,300,40);
 		lSenha.setBounds(300,190,80,40);
 		senha.setBounds(300,240,300,40);
-		
-		bVoltar.setFont(util.FONT_BOLD);
-		bVoltar.setBorder(BorderFactory.createEmptyBorder());
+		JComponent[] jcomponent = {lEmail, email, lSenha, senha, bVoltar, bLogar,beSenha};
+		setComponents(jcomponent);
 		bVoltar.setBackground(util.BUTTON_COLOR);
 		beSenha.setFont(fonte2);
-		beSenha.setBorder(BorderFactory.createEmptyBorder());
 		beSenha.setBackground(util.FUNDO);
-		bLogar.setFont(util.FONT_BOLD);
-		bLogar.setBorder(BorderFactory.createEmptyBorder());
 		bLogar.setBackground(util.BUTTON_COLOR);
-		lEmail.setFont(util.FONT_BOLD);
-		email.setFont(util.FONT_BOLD);
-		email.setBorder(BorderFactory.createEmptyBorder());
-		lSenha.setFont(util.FONT_BOLD);
-		senha.setFont(util.FONT_BOLD);
-		senha.setBorder(BorderFactory.createEmptyBorder());
-		
-		add(lEmail);
-		add(email);
-		add(lSenha);
-		add(senha);
-		add(beSenha);
-		add(bVoltar);
-		add(bLogar);
-		
-		setVisible(true);
+	}
+	
+	public void setComponents(JComponent[] itens) {
+		for(int i = 0; i < itens.length; i++) {
+			itens[i].setBorder(BorderFactory.createEmptyBorder());
+			itens[i].setFont(util.FONT_BOLD);
+			add(itens[i]);	
+		}
 	}
 }
