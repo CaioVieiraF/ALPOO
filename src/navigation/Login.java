@@ -13,15 +13,15 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class Login extends JPanel implements ActionListener{
+public class Login extends JPanel {
 	Design util = new Design();
 	JButton bLogar = new JButton("Entrar");
 	JButton bVoltar = new JButton("Sair");
 	JButton beSenha = new JButton("Esqueceu a senha?");
 	JLabel lEmail = new JLabel("Email:");
-	JTextField email = new JTextField();
+	JTextField email = new JTextField("exmplo@gmail.com");
 	JLabel lSenha = new JLabel("Senha:");
-	JPasswordField senha = new JPasswordField("Senha");
+	JPasswordField senha = new JPasswordField("password");
 	Font fonte2 = new Font("Ubuntu Mono", Font.BOLD | Font.ITALIC, 16);
 	
 	public Login(){
@@ -61,21 +61,5 @@ public class Login extends JPanel implements ActionListener{
 		add(bLogar);
 		
 		setVisible(true);
-		
-		beSenha.addActionListener(this);
-		bVoltar.addActionListener(this);
-		bLogar.addActionListener(this);
-	}
-
-	public void actionPerformed(ActionEvent e) {
-		Object obj = e.getSource();
-			
-		if(obj.equals(bLogar)){
-				
-		}else if(obj.equals(bVoltar)) {
-				
-		}else if(obj.equals(beSenha)) {
-				
-		}
 	}
 }
