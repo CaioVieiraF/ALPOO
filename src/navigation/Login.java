@@ -14,43 +14,42 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class Login extends JPanel implements ActionListener{
-	Color fundo = new Color(210, 230, 255);
-	Color corBot = new Color(180, 210, 190);
+	Design util = new Design();
 	JButton bLogar = new JButton("Entrar");
-	JButton bVoltar = new JButton("Voltar");
+	JButton bVoltar = new JButton("Sair");
 	JButton beSenha = new JButton("Esqueceu a senha?");
-	JLabel lEmail = new JLabel("Digite o email: ");
+	JLabel lEmail = new JLabel("Email:");
 	JTextField email = new JTextField();
-	JLabel lSenha = new JLabel("Digite a senha: ");
+	JLabel lSenha = new JLabel("Senha:");
 	JPasswordField senha = new JPasswordField("Senha");
-	Font fonte = new Font("Ubuntu Mono", Font.BOLD, 14);
+	Font fonte2 = new Font("Ubuntu Mono", Font.BOLD | Font.ITALIC, 16);
 	
 	public Login(){
 		setLayout(null);
-		setBackground(fundo);
+		setBackground(util.FUNDO);
 		
-		bVoltar.setBounds(200,300,80,40);
-		beSenha.setBounds(350,300,190,40);
-		bLogar.setBounds(580,300,80,40);
-		lEmail.setBounds(200,100,150,40);
-		email.setBounds(350,100,300,40);
-		lSenha.setBounds(200,200,150,40);
-		senha.setBounds(350,200,300,40);
+		bVoltar.setBounds(300,350,80,40);
+		beSenha.setBounds(290,290,170,40);
+		bLogar.setBounds(520,350,80,40);
+		lEmail.setBounds(300,90,80,40);
+		email.setBounds(300,140,300,40);
+		lSenha.setBounds(300,190,80,40);
+		senha.setBounds(300,240,300,40);
 		
-		bVoltar.setFont(fonte);
+		bVoltar.setFont(util.FONT_BOLD);
 		bVoltar.setBorder(BorderFactory.createEmptyBorder());
-		bVoltar.setBackground(corBot);
-		beSenha.setFont(fonte);
+		bVoltar.setBackground(util.BUTTON_COLOR);
+		beSenha.setFont(fonte2);
 		beSenha.setBorder(BorderFactory.createEmptyBorder());
-		beSenha.setBackground(corBot);
-		bLogar.setFont(fonte);
+		beSenha.setBackground(util.FUNDO);
+		bLogar.setFont(util.FONT_BOLD);
 		bLogar.setBorder(BorderFactory.createEmptyBorder());
-		bLogar.setBackground(corBot);
-		lEmail.setFont(fonte);
-		email.setFont(fonte);
+		bLogar.setBackground(util.BUTTON_COLOR);
+		lEmail.setFont(util.FONT_BOLD);
+		email.setFont(util.FONT_BOLD);
 		email.setBorder(BorderFactory.createEmptyBorder());
-		lSenha.setFont(fonte);
-		senha.setFont(fonte);
+		lSenha.setFont(util.FONT_BOLD);
+		senha.setFont(util.FONT_BOLD);
 		senha.setBorder(BorderFactory.createEmptyBorder());
 		
 		add(lEmail);
