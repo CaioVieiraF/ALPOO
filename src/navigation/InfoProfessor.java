@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -21,6 +22,7 @@ public class InfoProfessor extends JPanel implements ActionListener{
 	JTextField txtIdProfessor = new JTextField();
 	JTextField txtNomeProfessor  = new JTextField();
 	JTextField txtDataNascimentoProfessor  = new JTextField();
+	
 	
 	//endereço
 	JTextField txtNumeroProfessor = new JTextField();
@@ -43,6 +45,7 @@ public class InfoProfessor extends JPanel implements ActionListener{
 	// Cores
 	Color corF = new Color(200, 200, 200);
 	Color corFF = new Color(255, 255, 255);
+	Color corF3 = new Color(250, 100, 100);
 	Design cor = new Design();
 	
 	// Paineis
@@ -50,15 +53,28 @@ public class InfoProfessor extends JPanel implements ActionListener{
 	JPanel pContatos = new JPanel();
 	JPanel pIdentificacao = new JPanel();
 	JPanel pEspecialidades = new JPanel();
+	JPanel pTitulos = new JPanel();
 	JPanel pPrincipal = new JPanel();
 	
+	// CheckBox Especializacoes
 	JCheckBox cboxInformatica = new JCheckBox("Informática");
 	JCheckBox cboxMatematica = new JCheckBox("Matemática");
 	JCheckBox cboxMedicina = new JCheckBox("Medicina");
 	JCheckBox cboxCiencias = new JCheckBox("Ciências");
 	JCheckBox cboxLetras = new JCheckBox("Letras");
 	
+	// CheckBox Titulos
+	JCheckBox cboxBacharel = new JCheckBox("Bacharel");
+	JCheckBox cboxEspecialistaLatoSensu = new JCheckBox("Especialista Lato Sensu");
+	JCheckBox cboxMestrado = new JCheckBox("Mestrado");
+	JCheckBox cboxDoutorado = new JCheckBox("Doutorado");
+	
+	// Lista com Os CheckBox
 	JComponent[] componentesCbox = {cboxInformatica, cboxMatematica, cboxMedicina, cboxCiencias, cboxLetras}; 
+	JComponent[] componentesCboxTitulos = {cboxBacharel, cboxEspecialistaLatoSensu, cboxMestrado, cboxDoutorado}; 
+	
+	// Botao Atualizar cadastro
+	JButton btnAtualizar = new JButton("Atualizar");
 	
 	public InfoProfessor() {
 		painel();		
@@ -78,15 +94,23 @@ public class InfoProfessor extends JPanel implements ActionListener{
 		// CONFG DO PAINEL PRINCIPAL
 		pPrincipal.setLayout(null);
 		
-		pPrincipal.setBounds(90, 40, 700, 500);
+		pPrincipal.setBounds(90, 10, 700, 520);
 		pPrincipal.setBorder(BorderFactory.createTitledBorder("Informaçõs Do Professor"));
 		pPrincipal.setBackground(corF);
+		
+		// Botão atualizar
+		btnAtualizar.setBounds(220, 485, 280, 30);
+		btnAtualizar.setFont(fonte);
+		btnAtualizar.setBorder(BorderFactory.createEmptyBorder());
+		btnAtualizar.setBackground(corF3);
+		pPrincipal.add(btnAtualizar);
 		
 		// ADD PAINEIS
 		pPrincipal.add(pIdentificacao);
 		pPrincipal.add(pContatos);
 		pPrincipal.add(pEndereco);
 		pPrincipal.add(pEspecialidades);
+		pPrincipal.add(pTitulos);
 		add(pPrincipal);
 		
 	}
@@ -100,6 +124,7 @@ public class InfoProfessor extends JPanel implements ActionListener{
 		contato();
 		Endereco();
 		Especialidades(componentesCbox);
+		Titulos(componentesCboxTitulos);
 		
 		
 	}
@@ -128,14 +153,14 @@ public class InfoProfessor extends JPanel implements ActionListener{
 		txtCidadeProfessor.setBackground(corFF);		
 		
 		//ESTADO		
-		txtEstadoProfessor.setBounds(230, 65, 200, 40);
+		txtEstadoProfessor.setBounds(240, 65, 200, 40);
 		txtEstadoProfessor.setFont(fonte2);
 		txtEstadoProfessor.setBorder(BorderFactory.createEmptyBorder());
 		txtEstadoProfessor.setBorder(BorderFactory.createTitledBorder("Estado"));
 		txtEstadoProfessor.setBackground(corFF);		
 		
 		// NÚMERO
-		txtNumeroProfessor.setBounds(430, 65, 100, 40);
+		txtNumeroProfessor.setBounds(450, 65, 100, 40);
 		txtNumeroProfessor.setFont(fonte2);
 		txtNumeroProfessor.setBorder(BorderFactory.createEmptyBorder());
 		txtNumeroProfessor.setBorder(BorderFactory.createTitledBorder("N°"));
@@ -202,11 +227,10 @@ public class InfoProfessor extends JPanel implements ActionListener{
 		txtNomeProfessor.setBackground(corFF);
 		
 		// DATA DE NASCIMENTO
-		txtDataNascimentoProfessor.setBounds(400, 30, 100, 40);
+		txtDataNascimentoProfessor.setBounds(410, 30, 100, 40);
 		txtDataNascimentoProfessor.setFont(fonte2);
 		txtDataNascimentoProfessor.setBorder(BorderFactory.createEmptyBorder());
 		txtDataNascimentoProfessor.setBorder(BorderFactory.createTitledBorder("Data de Nasc"));
-		txtDataNascimentoProfessor.setText(" / / ");
 		txtDataNascimentoProfessor.setBackground(corFF);
 		
 		pIdentificacao.add(txtIdProfessor);	
@@ -224,12 +248,11 @@ public class InfoProfessor extends JPanel implements ActionListener{
 	}
 	
 	public void Especialidades(JComponent[] comp) {
-		int cont = 30;
+		int cont = 50;
 		for(int i = 0; i < comp.length; i++) {
-			comp[i].setBounds(cont, 30, 150, 40);
-			comp[i].setBackground(corFF);
-			
-			cont += 10;
+			comp[i].setBounds(cont, 30, 100, 40);
+			comp[i].setBackground(corFF);			
+			cont += 100;
 		}
 		
 		pEspecialidades.add(comp[0]);
@@ -240,10 +263,38 @@ public class InfoProfessor extends JPanel implements ActionListener{
 		
 		// Painel Especialidades
 		pEspecialidades.setLayout(null);
-		pEspecialidades.setBorder(BorderFactory.createTitledBorder("Identificação"));
+		pEspecialidades.setBorder(BorderFactory.createTitledBorder("Especializações"));
 		pEspecialidades.setBackground(corFF);
-		pEspecialidades.setBounds(30, 400, 630, 80);
+		pEspecialidades.setBounds(30, 320, 630, 80);
 		add(pEspecialidades);
+	}
+	
+	public void Titulos(JComponent[] comp) {
+		
+		comp[0].setBackground(corFF);			
+		comp[0].setBounds(50, 30, 80, 40);	
+		
+		comp[1].setBounds(140, 30, 180, 40);
+		comp[1].setBackground(corFF);	
+		
+		
+		comp[2].setBounds(320, 30, 80, 40);
+		comp[2].setBackground(corFF);	
+		
+		comp[3].setBounds(430, 30, 100, 40);
+		comp[3].setBackground(corFF);	
+		
+		pTitulos.add(comp[0]);
+		pTitulos.add(comp[1]);
+		pTitulos.add(comp[2]);
+		pTitulos.add(comp[3]);
+		
+		// Painel Especialidades
+		pTitulos.setLayout(null);
+		pTitulos.setBorder(BorderFactory.createTitledBorder("Títulos"));
+		pTitulos.setBackground(corFF);
+		pTitulos.setBounds(30, 400, 630, 80);
+		add(pTitulos);
 	}
 	
 	@Override
