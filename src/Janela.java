@@ -19,45 +19,50 @@ public class Janela extends JFrame {
 
     JMenuBar bar = new JMenuBar();
     JMenu telas = new JMenu("telas");
-    JMenuItem infoProfessorMenu = new JMenuItem("Info do professor");
-    JMenuItem cadastroMenu = new JMenuItem("Cadastro");
-    JMenuItem loginMenu = new JMenuItem("Login");
-    JMenuItem cursosMenu = new JMenuItem("Cursos");
-    JMenuItem diciplinasMenu = new JMenuItem("Diciplinas");
-    JMenuItem infoAlunoMenu = new JMenuItem("Info do aluno");
+    JMenuItem infoProfessorMenu, cadastroMenu, loginMenu, cursosMenu, diciplinasMenu, infoAlunoMenu;
 
 
     public Janela(){
 
-        ItemEvents itemEvents = new ItemEvents(navigation);
+        JMenuItem[] menuItens = {infoAlunoMenu, infoProfessorMenu, cadastroMenu, loginMenu, cursosMenu, diciplinasMenu};
+        JPanel[] panels = {cadastro, infoProfessor, login, cursos, diciplinas, infoAluno};
+        String[] panelsIDs = {"Cadastro", "Info do Professor", "Login", "Cursos", "Diciplinas", "Info do aluno"};
+
+        for (int i = 0; i < menuItens.length; i++){
+            menuItens[i] = new JMenuItem(panelsIDs[i]);
+        }
 
         navigation.setLayout(new CardLayout());
-        navigation.add(cadastro, "Cadastro");
-        navigation.add(infoProfessor, "Info do professor");
-        navigation.add(login, "Login");
-        navigation.add(cursos, "Cursos");
-        navigation.add(diciplinas, "Diciplinas");
-        navigation.add(infoAluno, "Info do aluno");
 
-        telas.add(infoProfessorMenu);
-        telas.add(cadastroMenu);
-        telas.add(loginMenu);
-        telas.add(cursosMenu);
-        telas.add(diciplinasMenu);
-        telas.add(infoAlunoMenu);
-        infoProfessorMenu.addActionListener(itemEvents);
-        cadastroMenu.addActionListener(itemEvents);
-        loginMenu.addActionListener(itemEvents);
-        cursosMenu.addActionListener(itemEvents);
-        diciplinasMenu.addActionListener(itemEvents);
-        infoAlunoMenu.addActionListener(itemEvents);
-
-        bar.add(telas);
         setJMenuBar(bar);
+        bar.add(telas);
+        addItens(navigation, panels, panelsIDs);
+        addItens(telas, menuItens);
+        addActionListeners(menuItens);
         add(navigation);
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    public void addItens(JComponent surface, JComponent[] components){
+        for (JComponent component : components){
+            surface.add(component);
+        }
+    }
+
+    public void addItens(JComponent surface, JComponent[] components, String[] componentsId){
+        for (int i = 0; i < components.length; i++){
+            surface.add(components[i], componentsId[i]);
+        }
+    }
+
+    public void addActionListeners(JMenuItem[] surfaces){
+        ItemEvents itemEvents = new ItemEvents(navigation);
+        for (JMenuItem surface : surfaces){
+            surface.addActionListener(itemEvents);
+        }
     }
 }
