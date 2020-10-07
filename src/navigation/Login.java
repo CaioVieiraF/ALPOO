@@ -2,13 +2,10 @@ package navigation;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -24,6 +21,7 @@ public class Login extends JPanel {
 	JLabel lSenha = new JLabel("Senha:");
 	JPasswordField senha = new JPasswordField("password");
 	Font fonte2 = new Font("Ubuntu Mono", Font.BOLD | Font.ITALIC, 16);
+	JPanel container;
 	
 	public Login(){
 		setLayout(null);
@@ -37,11 +35,14 @@ public class Login extends JPanel {
 		lSenha.setBounds(300,190,80,40);
 		senha.setBounds(300,240,300,40);
 		JComponent[] jcomponent = {lEmail, email, lSenha, senha, bVoltar, bLogar,beSenha};
+		container = util.panelDecorator(292, 90, 316, (jcomponent.length*40)+32, new Color(200, 200, 200));
 		setComponents(jcomponent);
 		bVoltar.setBackground(util.BUTTON_COLOR);
 		beSenha.setFont(fonte2);
-		beSenha.setBackground(util.FUNDO);
+		beSenha.setBackground(new Color(200, 200, 200));
 		bLogar.setBackground(util.BUTTON_COLOR);
+
+		add(container);
 	}
 	
 	public void setComponents(JComponent[] itens) {

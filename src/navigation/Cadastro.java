@@ -8,6 +8,7 @@ public class Cadastro extends JPanel{
 
     JTextField nome, email, senha, confirmaSenha;
     JPanel container, radioContainer;
+    Color containerBackground = new Color(200, 200, 200);
     JRadioButton aluno, professor;
     ButtonGroup radioButtonGroup;
     JButton cadastrar = new JButton("Cadastrar");
@@ -26,7 +27,6 @@ public class Cadastro extends JPanel{
         aluno = new JRadioButton("Sou aluno");
         professor = new JRadioButton("Sou professor");
         radioButtonGroup = new ButtonGroup();
-        container = new JPanel();
         radioContainer = new JPanel();
 
         this.mainPosX = mainPosX/2 - mainWidth/2;
@@ -37,18 +37,25 @@ public class Cadastro extends JPanel{
         JComponent[] components = {nome, email, senha, confirmaSenha, radioContainer,cadastrar};
         this.mainHeight = this.mainPosY - (mainItemHeight * components.length)/2;
         addComponents(components);
+        container = util.panelDecorator(
+                this.mainPosX-PADDING,
+                mainHeight-PADDING,
+                mainWidth+PADDING*2,
+                mainItemHeight*components.length,
+                containerBackground
+        );
         Border border = BorderFactory.createLineBorder(new Color(170, 170, 170));
         nome.setBorder(BorderFactory.createTitledBorder(border, "Nome"));
         email.setBorder(BorderFactory.createTitledBorder(border, "Email"));
         senha.setBorder(BorderFactory.createTitledBorder(border, "Senha"));
         confirmaSenha.setBorder(BorderFactory.createTitledBorder(border, "Confirma senha"));
 
-        radioContainer.setBackground(new Color(200, 200, 200));
-        aluno.setBounds(0, 0, mainWidth/2, mainItemHeight);
-        professor.setBounds(mainWidth/2, 0, mainWidth/2, mainItemHeight);
+        radioContainer.setBackground(containerBackground);
+        aluno.setBackground(containerBackground);
+        professor.setBackground(containerBackground);
+        aluno.setBounds(0, 0, mainWidth, mainItemHeight);
+        professor.setBounds(mainWidth/2, 0, mainWidth, mainItemHeight);
 
-        container.setBounds(this.mainPosX-PADDING, mainHeight-PADDING, mainWidth+PADDING*2, mainItemHeight*components.length);
-        container.setBackground(new Color(200, 200, 200));
         cadastrar.setBackground(util.BUTTON_COLOR);
 
         setBackground(util.FUNDO);
