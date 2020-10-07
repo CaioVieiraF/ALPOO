@@ -25,8 +25,8 @@ public class Janela extends JFrame {
     public Janela(){
 
         JMenuItem[] menuItens = {infoAlunoMenu, infoProfessorMenu, cadastroMenu, loginMenu, cursosMenu, diciplinasMenu};
-        JPanel[] panels = {cadastro, infoProfessor, login, cursos, diciplinas, infoAluno};
-        String[] panelsIDs = {"Cadastro", "Info do Professor", "Login", "Cursos", "Diciplinas", "Info do aluno"};
+        JPanel[] panels = {login, infoProfessor, cadastro, cursos, diciplinas, infoAluno};
+        String[] panelsIDs = {"Login", "Info do Professor", "Cadastro", "Cursos", "Diciplinas", "Info do aluno"};
 
         for (int i = 0; i < menuItens.length; i++){
             menuItens[i] = new JMenuItem(panelsIDs[i]);
@@ -44,7 +44,7 @@ public class Janela extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
         setLocationRelativeTo(null);
-        setVisible(true);
+        setResizable(false);
     }
 
     public void addItens(JComponent surface, JComponent[] components){
