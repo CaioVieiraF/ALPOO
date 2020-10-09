@@ -77,10 +77,8 @@ public class InfoProfessor extends JPanel implements ActionListener{
 	JButton btnAtualizar = new JButton("Atualizar");
 	
 	public InfoProfessor() {
-		painel();		
+		painel();
 		Componentes();
-		
-		
 		painelCentral();
 	}
 	
