@@ -140,7 +140,7 @@ public class Cursos extends JPanel {
 		compo[1].setBorder(BorderFactory.createTitledBorder("Carga Horaria"));
 		compo[1].setFont(fonte3);
 		compo[2].setBounds(210, 10, 100, 40);
-		compo[2].setBorder(BorderFactory.createTitledBorder("Cod Intituto"));
+		compo[2].setBorder(BorderFactory.createTitledBorder("Cod Instituto"));
 		compo[2].setFont(fonte3);
 
 		pCods.add(compo[0]);
