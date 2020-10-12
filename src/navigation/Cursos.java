@@ -57,11 +57,11 @@ public class Cursos extends JPanel {
 	// ----------- JComponet --------------
 	JComponent[] cBotoes = { rdbBacharel, rdbGestao, rdbOutros };
 	JComponent[] cCaixas = { txtCodCurso, txtCodIntituto, txtCargaHoraria };
-	
+
 	// JButtons
 	JButton btnCadastrar = new JButton("Cadastrar");
 	JButton btnVisualisar = new JButton("Visualisar");
-	
+
 	public Cursos() {
 
 		Tela();
@@ -87,7 +87,7 @@ public class Cursos extends JPanel {
 		ListaCursos();
 		BotoesR(cBotoes);
 		Cods(cCaixas);
-		
+
 		// Botoes
 		btnCadastrar.setBounds(170, 380, 160, 50);
 		btnCadastrar.setBackground(new Color(100, 255, 100));
@@ -97,11 +97,10 @@ public class Cursos extends JPanel {
 		btnVisualisar.setBackground(new Color(100, 100, 255));
 		btnVisualisar.setFont(fonte);
 		btnVisualisar.setBorder(BorderFactory.createEmptyBorder());
-		
+
 		pPrincipal.add(btnCadastrar);
 		pPrincipal.add(btnVisualisar);
-		
-		
+
 		add(pPrincipal);
 	}
 
@@ -143,13 +142,12 @@ public class Cursos extends JPanel {
 		compo[2].setBounds(210, 10, 100, 40);
 		compo[2].setBorder(BorderFactory.createTitledBorder("Cod Intituto"));
 		compo[2].setFont(fonte3);
-		
+
 		pCods.add(compo[0]);
 		pCods.add(compo[1]);
 		pCods.add(compo[2]);
-		
+
 		pPrincipal.add(pCods);
 	}
-	
 
 }
