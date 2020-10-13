@@ -85,11 +85,11 @@ public class Cursos extends JPanel {
 		Cods(cCaixas);
 
 		// Botoes
-		btnCadastrar.setBounds(170, 380, 160, 50);
+		btnCadastrar.setBounds(190, 340, 160, 50);
 		btnCadastrar.setBackground(new Color(100, 255, 100));
 		btnCadastrar.setFont(fonte);
 		btnCadastrar.setBorder(BorderFactory.createEmptyBorder());
-		btnVisualisar.setBounds(10, 380, 160, 50);
+		btnVisualisar.setBounds(30, 340, 160, 50);
 		btnVisualisar.setBackground(new Color(100, 100, 255));
 		btnVisualisar.setFont(fonte);
 		btnVisualisar.setBorder(BorderFactory.createEmptyBorder());
@@ -101,7 +101,7 @@ public class Cursos extends JPanel {
 	}
 
 	public void ListaCursos() {
-		listNomeCursos.setBounds(10, 80, 320, 280);
+		listNomeCursos.setBounds(30, 40, 320, 280);
 		listNomeCursos.setFont(fonte3);
 		listNomeCursos.setBackground(corF4);
 		listNomeCursos.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, corF));
@@ -110,7 +110,7 @@ public class Cursos extends JPanel {
 	}
 
 	public void BotoesR(JComponent[] compo) {
-		pBotoes.setBounds(340, 80, 200, 100);
+		pBotoes.setBounds(360, 40, 200, 100);
 		pBotoes.setLayout(new GridLayout(3, 1));
 		pBotoes.setBackground(corF4);
 		pBotoes.setFont(fonte3);
@@ -124,20 +124,21 @@ public class Cursos extends JPanel {
 		rdbGrupo.add(rdbGestao);
 		rdbGrupo.add(rdbOutros);
 		pPrincipal.add(pBotoes);
+		
 	}
 
 	public void Cods(JComponent[] compo) {
-		pCods.setBounds(10, 30, 320, 80);
+		pCods.setBounds(360, 150, 200, 170);
 		pCods.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, corF));
 		pCods.setBackground(corF4);
 		pCods.setLayout(null);
 		
-		compo[0].setBounds(10, 10, 100, 40);		
-		compo[1].setBounds(110, 10, 100, 40);
-		compo[2].setBounds(210, 10, 100, 40);
+		compo[0].setBounds(10, 10, 180, 50);		
+		compo[1].setBounds(10, 60, 180, 50);
+		compo[2].setBounds(10, 110, 180, 50);
 		
 		for(int i = 0; i < compo.length; i++) {	
-			
+			compo[i].setEnabled(false);
 			compo[i].setFont(fonte3);	
 			pCods.add(compo[i]);	
 		}
