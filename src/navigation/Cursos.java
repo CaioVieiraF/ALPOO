@@ -15,9 +15,7 @@ import javax.swing.JTextField;
 
 public class Cursos extends JPanel {
 
-	// --------------------DESIGN----------------------- //
-
-	// ----------------- Fotnes ---------------
+	// Fotnes 
 	Font fonte = new Font("Arial", Font.BOLD, 25);
 	Font fonte2 = new Font("Arial", Font.CENTER_BASELINE, 12);
 	Font fonte3 = new Font("Arial", Font.CENTER_BASELINE, 22);
@@ -29,9 +27,7 @@ public class Cursos extends JPanel {
 	Color corF4 = new Color(235, 235, 235);
 	Design cor = new Design();
 
-	// ------------------COMPONENTES-------------------- //
-
-	// ------------- Caixas de Texto --------------
+	// Caixas de Texto
 	JTextField txtCodCurso = new JTextField();
 	JTextField txtCargaHoraria = new JTextField();
 	JTextField txtCodIntituto = new JTextField();
@@ -42,19 +38,19 @@ public class Cursos extends JPanel {
 	JRadioButton rdbOutros = new JRadioButton("outros");
 	ButtonGroup rdbGrupo = new ButtonGroup();
 
-	// -------- Veriaveis -----------------
+	// Veriaveis
 	String[] nomeCurso = { "Administração de empresas", "BioMedicina", "Ciências Biológicas", "Ciencias da Computação",
 			"Direito", "Educação Física", "Farmacologia", "Rede de Computadores", "Sistemas de Informações" };
 
-	// ------- Lista -----------
+	// Lista 
 	JList<String> listNomeCursos = new JList<String>(nomeCurso);
 
-	// -------------- Paineis ----------
+	// Paineis
 	JPanel pPrincipal = new JPanel();
 	JPanel pCods = new JPanel();
 	JPanel pBotoes = new JPanel();
 
-	// ----------- JComponet --------------
+	// JComponet
 	JComponent[] cBotoes = { rdbBacharel, rdbGestao, rdbOutros };
 	JComponent[] cCaixas = { txtCodCurso, txtCodIntituto, txtCargaHoraria };
 
@@ -119,9 +115,11 @@ public class Cursos extends JPanel {
 		pBotoes.setBackground(corF4);
 		pBotoes.setFont(fonte3);
 		pBotoes.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, corF));
+		
 		for (int i = 0; i < compo.length; i++) {
 			pBotoes.add(compo[i]);
 		}
+		
 		rdbGrupo.add(rdbBacharel);
 		rdbGrupo.add(rdbGestao);
 		rdbGrupo.add(rdbOutros);
@@ -133,20 +131,20 @@ public class Cursos extends JPanel {
 		pCods.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, corF));
 		pCods.setBackground(corF4);
 		pCods.setLayout(null);
-		compo[0].setBounds(10, 10, 100, 40);
-		compo[0].setBorder(BorderFactory.createTitledBorder("Cod Curso"));
-		compo[0].setFont(fonte3);
+		
+		compo[0].setBounds(10, 10, 100, 40);		
 		compo[1].setBounds(110, 10, 100, 40);
-		compo[1].setBorder(BorderFactory.createTitledBorder("Carga Horaria"));
-		compo[1].setFont(fonte3);
 		compo[2].setBounds(210, 10, 100, 40);
-		compo[2].setBorder(BorderFactory.createTitledBorder("Cod Instituto"));
-		compo[2].setFont(fonte3);
-
-		pCods.add(compo[0]);
-		pCods.add(compo[1]);
-		pCods.add(compo[2]);
-
+		
+		for(int i = 0; i < compo.length; i++) {	
+			
+			compo[i].setFont(fonte3);	
+			pCods.add(compo[i]);	
+		}
+		compo[0].setBorder(BorderFactory.createTitledBorder("Cod Curso"));
+		compo[1].setBorder(BorderFactory.createTitledBorder("Carga Horaria"));
+		compo[2].setBorder(BorderFactory.createTitledBorder("Cod Intituto"));
+		
 		pPrincipal.add(pCods);
 	}
 
