@@ -16,7 +16,7 @@ public class Cadastro extends JPanel{
 
     int PADDING = 8;
     int mainWidth = 300;
-    int mainItemHeight = 50;
+    int mainItemHeight = 60;
     int mainPosX, mainPosY, mainHeight;
 
     public Cadastro(int mainPosX, int mainPosY){
