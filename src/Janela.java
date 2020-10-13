@@ -12,6 +12,7 @@ public class Janela extends JFrame {
     JPanel navigation = new JPanel();
     JPanel infoProfessor = new InfoProfessor();
     JPanel cadastro = new Cadastro(SCREEN_WIDTH, SCREEN_HEIGHT);
+    JPanel consultaProf = new ConsultaProfessor(SCREEN_WIDTH, SCREEN_HEIGHT);
     JPanel login = new Login();
     JPanel cursos = new Cursos();
     JPanel diciplinas = new Diciplinas();

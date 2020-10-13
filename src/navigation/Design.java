@@ -8,9 +8,9 @@ public class Design {
 	Color FUNDO = new Color(210, 230, 255);
 	Color BUTTON_COLOR = new Color(170, 200, 180);
 
-	public JPanel panelDecorator(int posX, int posY, int width, int height, Color cor){
+	public JPanel panelDecorator(int posX, int posY, int width, int height, Color cor, int padding){
 		JPanel container = new JPanel();
-		container.setBounds(posX, posY, width, height);
+		container.setBounds(posX-padding, posY-padding, width+padding*2, height+padding*2);
 		container.setBackground(cor);
 		return container;
 	}

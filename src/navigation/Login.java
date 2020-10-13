@@ -34,7 +34,7 @@ public class Login extends JPanel {
 		buttons.add(bLogar);
 		
 		JComponent[] jcomponent = {email, senha, beSenha, buttons};
-		container = util.panelDecorator(x - padding, y - padding * 2, x + padding * 2, h*jcomponent.length + padding * 2 ,new Color(200, 200, 200));
+		container = util.panelDecorator(x, y, x, h*jcomponent.length,new Color(200, 200, 200), padding);
 		setComponents(jcomponent);		
 		bVoltar.setBackground(util.BUTTON_COLOR);
 		bVoltar.setBorder(BorderFactory.createEmptyBorder());

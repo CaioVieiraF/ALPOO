@@ -38,11 +38,12 @@ public class Cadastro extends JPanel{
         this.mainHeight = this.mainPosY - (mainItemHeight * components.length)/2;
         addComponents(components);
         container = util.panelDecorator(
-                this.mainPosX-PADDING,
-                mainHeight-PADDING,
-                mainWidth+PADDING*2,
+                this.mainPosX,
+                mainHeight,
+                mainWidth,
                 mainItemHeight*components.length,
-                containerBackground
+                containerBackground,
+                PADDING
         );
         Border border = BorderFactory.createLineBorder(new Color(170, 170, 170));
         nome.setBorder(BorderFactory.createTitledBorder(border, "Nome"));
