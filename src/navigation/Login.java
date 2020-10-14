@@ -16,15 +16,19 @@ public class Login extends JPanel {
 	int h = 50;
 	int padding = 8;
 	Design util = new Design();
+
 	JButton bLogar = new JButton("Entrar");
 	JButton bVoltar = new JButton("Sair");
 	JButton beSenha = new JButton("Esqueceu a senha?");
+
 	JTextField email = new JTextField("exmplo@gmail.com");
 	JPasswordField senha = new JPasswordField("password");
-	Font fonte2 = new Font("Ubuntu Mono", Font.BOLD | Font.ITALIC, 15);
+
 	JPanel buttons = new JPanel();
 	JPanel container;
-	
+
+	Font fonte2 = new Font("Ubuntu Mono", Font.BOLD | Font.ITALIC, 15);
+
 	public Login(){
 		setLayout(null);
 		setBackground(util.FUNDO);
@@ -35,7 +39,8 @@ public class Login extends JPanel {
 		
 		JComponent[] jcomponent = {email, senha, beSenha, buttons};
 		container = util.panelDecorator(x, y, x, h*jcomponent.length,new Color(200, 200, 200), padding);
-		setComponents(jcomponent);		
+		setComponents(jcomponent);
+
 		bVoltar.setBackground(util.BUTTON_COLOR);
 		bVoltar.setBorder(BorderFactory.createEmptyBorder());
 		bVoltar.setFont(util.FONT_BOLD);
@@ -46,6 +51,7 @@ public class Login extends JPanel {
 		bLogar.setBorder(BorderFactory.createEmptyBorder());
 		email.setBorder(BorderFactory.createTitledBorder("Email"));
 		senha.setBorder(BorderFactory.createTitledBorder("Senha"));
+
 		add(container);
 	}
 	
