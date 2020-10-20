@@ -90,10 +90,9 @@ public class CadastroProfessor extends JPanel implements ActionListener{
 	public void painelCentral() {
 		
 		// CONFG DO PAINEL PRINCIPAL
-		pPrincipal.setLayout(null);
-		
+		pPrincipal.setLayout(null);		
 		pPrincipal.setBounds(90, 10, 700, 520);
-		pPrincipal.setBorder(BorderFactory.createTitledBorder("Informaçõs Do Professor"));
+		pPrincipal.setBorder(BorderFactory.createTitledBorder("Cadastro Do Professor"));
 		pPrincipal.setBackground(corF);
 		
 		// Botão atualizar
