@@ -5,6 +5,7 @@ import java.awt.Font;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -33,9 +34,11 @@ public class CadastroAluno extends JPanel {
 	JTextField txtCodCurso = new JTextField();
 	JTextField txtNomeCurso = new JTextField();
 	
-	JComponent[] compInfoTxt = {txtMatricula , txtNome, txtDataNasc, txtCodCurso, txtNomeCurso};
+	JComponent[] compInfoTxt = {txtNome, txtMatricula, txtDataNasc, txtCodCurso, txtNomeCurso};
 	
-	//JList
+	//Lista
+	String[] diciplinas = {"Estrututra de Dados", "LPBD", "Ciênncias Sociais", "Calculo p/ Computaçãoo", "Matemática Discreta", "ALPOO"," taw ", "ipe", "lpoo", "libras (optativa)","Direitos Humanos (optativa)","rel. Etica..."};
+	JList<String> materias = new JList<String>(diciplinas);
 	
 	
 	public CadastroAluno() {
@@ -63,41 +66,56 @@ public class CadastroAluno extends JPanel {
 	
 	
 	public void Info() {
-		pInfo.setBounds(20, 20, 280, 280);
+		pInfo.setBounds(20, 30, 660, 180);
 		pInfo.setLayout(null);
 		pInfo.setBackground(corFF);
 		pInfo.setBorder(BorderFactory.createTitledBorder("Info Do Aluno"));
-		
 		ComponetesInfo();		
-	}
-	
-	
-	public void Curso() {
-		pCurso.setBounds(330, 20, 200, 200);
-		pCurso.setLayout(null);
-		pCurso.setBackground(corFF);
-		pCurso.setBorder(BorderFactory.createTitledBorder("Cursos Do Aluno"));
-		
 	}
 	
 	public void ComponetesInfo() {
 		int x = 15;
-		int y = 20;
-		int w = 250;
+		int y = 70;
+		int w = 270;
 		int h = 50;
-		
-		for (int i = 0; i < compInfoTxt.length; i++) {
+		compInfoTxt[0].setBounds(15, 20, 590, h);
+		compInfoTxt[0].setFont(fonte2);
+		for (int i = 1; i < compInfoTxt.length; i++) {
 			compInfoTxt[i].setBounds(x, y, w, h);
 			compInfoTxt[i].setFont(fonte2);
-			pInfo.add(compInfoTxt[i]);
+			if(i == 2) {
+				y = 20;
+				x = 330;
+			}
 			y += 50;
+			pInfo.add(compInfoTxt[i]);
+			
 		}
-		
-		compInfoTxt[0].setBorder(BorderFactory.createTitledBorder("Matricula"));
-		compInfoTxt[1].setBorder(BorderFactory.createTitledBorder("Nome"));
+		pInfo.add(compInfoTxt[0]);
+		compInfoTxt[0].setBorder(BorderFactory.createTitledBorder("Nome"));
+		compInfoTxt[1].setBorder(BorderFactory.createTitledBorder("Matricula"));
 		compInfoTxt[2].setBorder(BorderFactory.createTitledBorder("Data Nasc"));
 		compInfoTxt[3].setBorder(BorderFactory.createTitledBorder("CodCurso"));
 		compInfoTxt[4].setBorder(BorderFactory.createTitledBorder("Nome do Curso"));
+		
+	}
+	
+	public void Curso() {
+		pCurso.setBounds(20, 210, 300, 300);
+		pCurso.setLayout(null);
+		pCurso.setBackground(corFF);
+		pCurso.setBorder(BorderFactory.createTitledBorder("Cursos Do Aluno"));
+		Diciplinas();
+	}
+	
+	public void Diciplinas() {		
+		int x = 15;
+		int y = 20;
+		int w = 250;
+		int h = 250;
+		
+		materias.setBounds(x, y, w, h);
+		pCurso.add(materias);
 		
 	}
 	
