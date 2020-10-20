@@ -5,8 +5,8 @@ import java.awt.Font;
 
 public class Design {
 	Font FONT_BOLD = new Font("Ubuntu Mono", Font.BOLD, 16);
-	Color FUNDO = new Color(210, 230, 255);
-	Color BUTTON_COLOR = new Color(170, 200, 180);
+	Color FUNDO = new Color(82, 117, 184);
+	Color BUTTON_COLOR = new Color(99, 206, 173);
 
 	public JPanel panelDecorator(int posX, int posY, int width, int height, Color cor, int padding){
 		JPanel container = new JPanel();
