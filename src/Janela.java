@@ -10,37 +10,57 @@ public class Janela extends JFrame {
     int SCREEN_HEIGHT = 600;
 
     JPanel navigation = new JPanel();
-    JPanel CadastroProfessor = new CadastroProfessor();
+    JPanel cadastroProfessor = new CadastroProfessor();
     JPanel cadastro = new Cadastro(SCREEN_WIDTH, SCREEN_HEIGHT);
     JPanel consultaProf = new ConsultaProfessor(SCREEN_WIDTH, SCREEN_HEIGHT);
     JPanel login = new Login();
     JPanel cursos = new Cursos();
     JPanel diciplinas = new Diciplinas(SCREEN_WIDTH,SCREEN_HEIGHT);
     JPanel infoAluno = new InfoAluno();
-    JPanel CadastroAluno = new CadastroAluno();
+    JPanel cadastroAluno = new CadastroAluno();
 
     JMenuBar bar = new JMenuBar();
-    JMenu telas = new JMenu("telas");
-    JMenuItem CadastroProfessorMenu, cadastroMenu, consultaProfMenu, loginMenu, cursosMenu, diciplinasMenu, CadastroAlunoMenu, infoAlunoMenu;
+    JMenu mostrar = new JMenu("Mostrar");
+    JMenu cadastrar = new JMenu("Cadastrar");
+    JMenu sair = new JMenu("Sair");
+    JMenuItem cadastroProfessorMenu, cadastroMenu, consultaProfMenu, loginMenu, cursosMenu, diciplinasMenu, cadastroAlunoMenu, infoAlunoMenu, sairMenu;
 
 
     public Janela(){
 
-        JMenuItem[] menuItens = {infoAlunoMenu, CadastroProfessorMenu, consultaProfMenu, cadastroMenu, loginMenu, cursosMenu, CadastroAlunoMenu, diciplinasMenu};
-        JPanel[] panels = {login, CadastroProfessor, consultaProf, cadastro, cursos, diciplinas, CadastroAluno, infoAluno};
-        String[] panelsIDs = {"Login", "Cadstro do Professor", "Consulta prof", "Cadastro", "Cursos", "Diciplinas", "Cadastro do Aluno", "Info do aluno"};
+        JMenuItem[] menuItensMostrar = {loginMenu, consultaProfMenu, cursosMenu, diciplinasMenu, infoAlunoMenu};
+        JMenuItem[] menuItemsCadastrar = {cadastroMenu, cadastroAlunoMenu, cadastroProfessorMenu};
+        JPanel[] panels = {login, consultaProf, cursos, diciplinas, infoAluno, cadastro, cadastroAluno, cadastroProfessor};
+        String[] panelsIDs = {"Login", "Consulta prof", "Cursos", "Diciplinas", "Info do aluno", "Cadastro", "Cadastro do Aluno", "Cadstro do Professor"};
 
-        for (int i = 0; i < menuItens.length; i++){
-            menuItens[i] = new JMenuItem(panelsIDs[i]);
+        for (int i = 0; i < menuItensMostrar.length; i++){
+            menuItensMostrar[i] = new JMenuItem(panelsIDs[i]);
         }
+        for (int i = 0; i < menuItemsCadastrar.length; i++){
+            menuItemsCadastrar[i] = new JMenuItem(panelsIDs[i+menuItensMostrar.length]);
+        }
+
+        sairMenu = new JMenuItem("Sair");
 
         navigation.setLayout(new CardLayout());
 
         setJMenuBar(bar);
-        bar.add(telas);
+        bar.add(mostrar);
+        bar.add(cadastrar);
+        bar.add(sair);
+        bar.setBackground(Color.WHITE);
+        bar.setBorder(BorderFactory.createEmptyBorder());
+
         addItens(navigation, panels, panelsIDs);
-        addItens(telas, menuItens);
-        addActionListeners(menuItens);
+
+        addItens(mostrar, menuItensMostrar);
+        addItens(cadastrar, menuItemsCadastrar);
+        sair.add(sairMenu);
+
+        addActionListeners(menuItensMostrar);
+        addActionListeners(menuItemsCadastrar);
+        sairMenu.addActionListener(actionEvent -> System.exit(0));
+
         add(navigation);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

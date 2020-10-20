@@ -4,7 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 
 public class Design {
-	Font FONT_BOLD = new Font("Ubuntu Mono", Font.BOLD, 16);
+    Font FONT_BOLD = new Font("Ubuntu Mono", Font.BOLD, 16);
+	Font FONT_REGULAR = new Font("Ubuntu Mono", Font.PLAIN, 16);
 	Color FUNDO = new Color(82, 117, 184);
 	Color BUTTON_COLOR = new Color(99, 206, 173);
 
