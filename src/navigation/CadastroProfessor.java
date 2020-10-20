@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 
-public class InfoProfessor extends JPanel implements ActionListener{
+public class CadastroProfessor extends JPanel implements ActionListener{
 	
 	// sobre
 	JTextField txtIdProfessor = new JTextField();
@@ -76,7 +76,7 @@ public class InfoProfessor extends JPanel implements ActionListener{
 	// Botao Atualizar cadastro
 	JButton btnAtualizar = new JButton("Atualizar");
 	
-	public InfoProfessor() {
+	public CadastroProfessor() {
 		painel();
 		Componentes();
 		painelCentral();
