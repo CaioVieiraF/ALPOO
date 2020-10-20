@@ -1,25 +1,26 @@
 package navigation;
 
 import javax.swing.*;
+import javax.swing.border.EtchedBorder;
 import java.awt.*;
 
 public class Diciplinas extends JPanel{
-	int x = 420, w = 200, h = 30;
+	int x = 400, w = 200, h = 30;
 	int px, py, pw, ph;
+	int p2 = 360;
 	int padding = 20;
 
 	Design util = new Design();
-	String[] materia = {"Estrututra de Dados", "LPBD", "Ciências Sociais", "Calculo p/ Computa��o", "Matem�tica Discreta", "ALPOO"," taw ", "ipe", "lpoo", "libras (optativa)","Direitos Humanos (optativa)","rel. Etica..."};
+	String[] materia = {"Estrututra de Dados", "LPBD", "Ciências Sociais", "Cálculo p/ Computação", "Matemática Discreta", "ALPOO"," taw ", "ipe", "lpoo", "libras (optativa)","Direitos Humanos (optativa)","rel. Etica..."};
 	String[] professores = {"Paulo", "Alvaro","Norberto", "Luiz Gobita", "Gustavo", "Marcos", "Ricardo Veras"};
 	JList<String> materias = new JList<String>(materia);
 
 	JLabel aulas = new JLabel("Aulas por semana:");
-	JLabel professor = new JLabel("professor: " + professores[0]);
-	JLabel carga = new JLabel("Carga hor�ria: " + "80hr");
-	JLabel np1 = new JLabel("Nota P1: " + "8,0");
-	JLabel np2 = new JLabel("Nota P2: " + "9,0");
+	JLabel carga = new JLabel("Carga horária: " + "80hr");
+	JLabel cd = new JLabel("Código da disciplina: " + "7AB8");
 
 	JPanel container;
+	JPanel container2 = new JPanel();
 	JScrollPane scrList = new JScrollPane();
 
 	ButtonGroup rb = new ButtonGroup();
@@ -43,36 +44,51 @@ public class Diciplinas extends JPanel{
 		rb.add(rb3);
 		rb.add(rb4);
 
-		JComponent[] jcomponent = {scrList, materias, carga, professor, np1, np2, aulas, rb1, rb2, rb3, rb4};
+		JComponent[] jcomponent = {scrList, materias, container2, carga, cd, aulas, rb1, rb2, rb3, rb4};
 		container = util.panelDecorator(px, py, pw, ph, new Color(200, 200, 200), padding);
 		container.setLayout(null);
 
 		setComponents(jcomponent);
 
 		add(container);
+		materias.setBackground(WHITE);
 
-        materias.setBackground(WHITE);
+		container2.setLayout(null);
+		container2.setBounds(x - padding,80,330,p2);
+		container2.setBackground(WHITE);
+		container2.setBorder(BorderFactory.createEtchedBorder());
 
         scrList.setViewportView(materias);
-		scrList.setBounds(50, 80, 350, 270);
+		scrList.setBounds(20, 80, p2 - padding, p2);
 		scrList.setBackground(WHITE);
 		scrList.setBorder(BorderFactory.createTitledBorder("Selecione uma disciplina"));
 
-        aulas.setLocation(60, 330 + padding);
-        rb1.setBounds(60, 400, 50, h);
-        rb2.setBounds(120 , 400, 50, h);
-        rb3.setBounds(180 , 400, 50, h);
-        rb4.setBounds(240 , 400, 50, h);
+		container2.add(carga);
+		container2.add(cd);
+		container2.add(aulas);
+		container2.add(rb1);
+		container2.add(rb2);
+		container2.add(rb3);
+		container2.add(rb4);
+
+		carga.setLocation(10,10);
+		cd.setLocation(10,70);
+		aulas.setLocation(x + padding, 150);
+        rb1.setBounds(10, 130, 50, h);
+        rb2.setBounds(70, 130, 50, h);
+        rb3.setBounds(130, 130, 50, h);
+        rb4.setBounds(190, 130, 50, h);
 	}
 	
 	public void setComponents(JComponent[] itens) {
 		for(int i = 0; i < itens.length; i++) {
 			itens[i].setLocation(x + padding, h +(i * h) - 30);
-			itens[i].setSize(w + padding,h + padding);
-			itens[i].setBackground(container.getBackground());
+			itens[i].setSize(w * padding,h + padding);
+			itens[i].setBackground(WHITE);
 			itens[i].setBorder(BorderFactory.createEmptyBorder());
-			itens[i].setFont(new Font("Ubuntu Mono", Font.BOLD, 22));
+			itens[i].setFont(new Font("Ubuntu Mono", Font.BOLD, 20));
 			container.add(itens[i]);
+
 		}
 	}
 }
