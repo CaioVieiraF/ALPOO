@@ -55,8 +55,7 @@ public class Login extends JPanel {
 		add(container);
 	}
 	
-	public void setComponents(JComponent[] itens) {
-		
+	public void setComponents(JComponent[] itens){
 		for(int i = 0; i < itens.length; i++) {
 			itens[i].setBounds(x, y + (i * h), x, h - padding);
 			itens[i].setBorder(BorderFactory.createEmptyBorder());
