@@ -8,10 +8,10 @@ public class ConsultaProfessor extends JPanel {
     int PADDING = 8;
     Design utils = new Design();
     int width, height, mainPosX, mainPosY;
-    JPanel panel;
+    JComponent panel, busca, resultado, barraDeBusca, btnBusca;
     Color fundoPanel = new Color(220, 220, 220);
     String[] professores = {"Ricardo Veras"};
-    JList<String> professoresComponent = new JList<>();
+    JList<String> professoresComponent = new JList<>(professores);
 
     public ConsultaProfessor(int mainPosX, int mainPosY){
         this.width = mainPosX - mainPosX/3;
@@ -22,19 +22,47 @@ public class ConsultaProfessor extends JPanel {
         mainView();
         setLayout(null);
         setBackground(utils.FUNDO);
-        JComponent[] components = {panel, professoresComponent};
+        JComponent[] components = {busca, resultado, panel};
         addItens(components);
+
     }
 
     public void mainView(){
+        resultado = new JPanel();
         panel = utils.panelDecorator(mainPosX, mainPosY, width, height, fundoPanel, 8);
-        professoresComponent.setBounds(mainPosX, mainPosY, width, height);
+        busca = new JPanel();
+        barraDeBusca = new JTextField();
+        btnBusca = new JButton("BUSCAR");
+
+        btnBusca.setBackground(utils.BUTTON_COLOR);
+        btnBusca.setFont(utils.FONT_BOLD);
+        btnBusca.setBorder(BorderFactory.createLineBorder(utils.BUTTON_COLOR, 5));
+
+        professoresComponent.setFont(utils.FONT_BOLD);
+        searchView();
+        infoView();
     }
 
     public void addItens(JComponent[] components){
         for (JComponent component : components){
             add(component);
         }
+    }
+
+    public void searchView(){
+        busca.setLayout(new BorderLayout());
+        busca.setBounds(mainPosX, mainPosY, width/2, height);
+        busca.add(barraDeBusca, BorderLayout.NORTH);
+        busca.add(professoresComponent, BorderLayout.CENTER);
+        busca.add(btnBusca, BorderLayout.SOUTH);
+    }
+
+    public void infoView(){
+        resultado.setLayout(new BorderLayout());
+        resultado.setBounds(mainPosX+width/2, mainPosY, width/2, height);
+        resultado.setBorder(BorderFactory.createLineBorder(new Color(170, 170, 170)));
+
+
     }
 
 }
