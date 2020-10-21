@@ -70,7 +70,7 @@ public class CadastroDisciplina extends JPanel{
     public void Painelprincipal() {
         // painel principal
         pPrincipal.setLayout(null);
-        pPrincipal.setBackground(new Colo());
+        pPrincipal.setBackground(new Color(200, 200, 200));
         pPrincipal.setBounds(150, 50, 600, 450);
         pPrincipal.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, corF));
 
