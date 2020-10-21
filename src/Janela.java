@@ -16,7 +16,7 @@ public class Janela extends JFrame {
     JPanel login = new Login();
     JPanel cursos = new Cursos();
     JPanel diciplinas = new Diciplinas(SCREEN_WIDTH,SCREEN_HEIGHT);
-    JPanel infoAluno = new InfoAluno();
+    JPanel infoAluno = new InfoAluno(SCREEN_WIDTH, SCREEN_HEIGHT);
     JPanel cadastroAluno = new CadastroAluno();
     JPanel cadastroDisciplina = new CadastroDisciplina(SCREEN_WIDTH,SCREEN_HEIGHT);
     
@@ -64,19 +64,10 @@ public class Janela extends JFrame {
 			jMenuItem.setFont(fonte);
 			jMenuItem.setForeground(Color.WHITE);
 		}
-        
-        for(int i = 0; i < menuItensMostrar.length; i++) { 
-        	menuItensMostrar[i].setBackground(Color.DARK_GRAY);
-        	menuItensMostrar[i].setForeground(Color.WHITE);
-        	menuItensMostrar[i].setFont(fonte);
-        }
-        
-        for(int i = 0; i < menuItemsCadastrar.length; i++) {
-        	menuItemsCadastrar[i].setBackground(Color.DARK_GRAY);
-        	menuItemsCadastrar[i].setForeground(Color.WHITE);
-        	menuItemsCadastrar[i].setFont(fonte);       	
-          }
-        
+
+        configureMenu(menuItensMostrar);
+        configureMenu(menuItemsCadastrar);
+
         addItens(navigation, panels, panelsIDs);
 
         addItens(mostrar, menuItensMostrar);
@@ -111,6 +102,14 @@ public class Janela extends JFrame {
         ItemEvents itemEvents = new ItemEvents(navigation);
         for (JMenuItem surface : surfaces){
             surface.addActionListener(itemEvents);
+        }
+    }
+
+    public void configureMenu(JMenuItem[] list){
+        for (JMenuItem jMenuItem : list) {
+            jMenuItem.setBackground(Color.DARK_GRAY);
+            jMenuItem.setForeground(Color.WHITE);
+            jMenuItem.setFont(fonte);
         }
     }
 }
