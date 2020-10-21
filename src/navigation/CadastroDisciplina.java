@@ -14,6 +14,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 public class CadastroDisciplina extends JPanel{
+    //---classe Design--
+    Design util = new Design();
 
     // Fotnes
     Font fonte = new Font("Arial", Font.BOLD, 25);
@@ -23,9 +25,7 @@ public class CadastroDisciplina extends JPanel{
     // ------------ Cores --------------
     Color corF = new Color(200, 200, 200);
     Color corFF = new Color(255, 255, 255);
-    Color corF3 = new Color(250, 100, 100);
     Color corF4 = new Color(235, 235, 235);
-    Design cor = new Design();
 
     // Caixas de Texto
     JTextField txtCodCurso = new JTextField();
@@ -39,8 +39,8 @@ public class CadastroDisciplina extends JPanel{
     ButtonGroup rdbGrupo = new ButtonGroup();
 
     // Veriaveis
-    String[] nomeDisciplina = { "Administração de empresas", "BioMedicina", "Ciências Biol�gicas", "Ciencias da Computa��o",
-            "Direito", "Educa��o F�sica", "Farmacologia", "Rede de Computadores", "Sistemas de Informa��es" };
+    String[] nomeDisciplina = { "Estrutura de Dados", "ALPOO", "Cálculo p/ computação", "Matemática Discreta",
+            "LPOO", "IPE", "LPBD", "TAW", "Teoria dos Grafos"};
 
     // Lista
     JList<String> listNomeCursos = new JList<String>(nomeDisciplina);
@@ -63,16 +63,14 @@ public class CadastroDisciplina extends JPanel{
     }
 
     public void Tela() {
-        setSize(900, 600);
         setLayout(null);
-        Design ds = new Design();
-        setBackground(ds.FUNDO);
+        setBackground(util.FUNDO);
     }
 
     public void Painelprincipal() {
         // painel principal
         pPrincipal.setLayout(null);
-        pPrincipal.setBackground(corF4);
+        pPrincipal.setBackground(new Colo());
         pPrincipal.setBounds(150, 50, 600, 450);
         pPrincipal.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, corF));
 
@@ -83,7 +81,7 @@ public class CadastroDisciplina extends JPanel{
 
         // Botoes
         btnCadastrar.setBounds(190, 340, 160, 50);
-        btnCadastrar.setBackground(new Color(100, 255, 100));
+        btnCadastrar.setBackground(util.BUTTON_COLOR);
         btnCadastrar.setFont(fonte);
         btnCadastrar.setBorder(BorderFactory.createEmptyBorder());
 
@@ -96,7 +94,7 @@ public class CadastroDisciplina extends JPanel{
         listNomeCursos.setBounds(30, 40, 320, 280);
         listNomeCursos.setFont(fonte3);
         listNomeCursos.setBackground(corF4);
-        listNomeCursos.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, corF));
+        listNomeCursos.setBorder(BorderFactory.createEtchedBorder());
         pPrincipal.add(listNomeCursos);
     }
 
@@ -105,7 +103,7 @@ public class CadastroDisciplina extends JPanel{
         pBotoes.setLayout(new GridLayout(3, 1));
         pBotoes.setBackground(corF4);
         pBotoes.setFont(fonte3);
-        pBotoes.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, corF));
+        pBotoes.setBorder(BorderFactory.createEtchedBorder());
 
         for (int i = 0; i < compo.length; i++) {
             pBotoes.add(compo[i]);
@@ -119,7 +117,7 @@ public class CadastroDisciplina extends JPanel{
 
     public void Cods(JComponent[] compo) {
         pCods.setBounds(360, 150, 200, 170);
-        pCods.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, corF));
+        pCods.setBorder(BorderFactory.createEtchedBorder());
         pCods.setBackground(corF4);
         pCods.setLayout(null);
 
@@ -132,6 +130,7 @@ public class CadastroDisciplina extends JPanel{
             compon.setFont(fonte3);
             pCods.add(compon);
         }
+
         compo[0].setBorder(BorderFactory.createTitledBorder("Cod Curso"));
         compo[1].setBorder(BorderFactory.createTitledBorder("Carga Horaria"));
         compo[2].setBorder(BorderFactory.createTitledBorder("Cod Intituto"));
