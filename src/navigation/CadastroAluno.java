@@ -20,7 +20,6 @@ public class CadastroAluno extends JPanel {
 	JPanel pNotas = new JPanel();
 	JPanel pFaltas = new JPanel();
 	
-	
 	// Fotnes
 	Font fonte = new Font("Arial", Font.BOLD, 25);
 	Font fonte2 = new Font("Arial", Font.CENTER_BASELINE, 16);
@@ -40,7 +39,6 @@ public class CadastroAluno extends JPanel {
 	JTextField txtN1 = new JTextField();
 	JTextField txtN2 = new JTextField();
 	JTextField txtMedia = new JTextField();
-	
 	
 	JComponent[] compInfoTxt = {txtNome, txtMatricula, txtDataNasc, txtCodCurso, txtNomeCurso};
 	
@@ -71,8 +69,7 @@ public class CadastroAluno extends JPanel {
 		pCentral.setBackground(corF);
 		pCentral.setLayout(null);
 		pCentral.setBorder(BorderFactory.createTitledBorder("Cadastro Do Aluno"));
-		
-		
+
 		Curso();
 		Info();
 		Botoes();
@@ -82,12 +79,12 @@ public class CadastroAluno extends JPanel {
 		add(pCentral);
 	}
 	
-	
 	public void Info() {
 		pInfo.setBounds(20, 30, 660, 150);
 		pInfo.setLayout(null);
 		pInfo.setBackground(corFF);
 		pInfo.setBorder(BorderFactory.createTitledBorder("Info Do Aluno"));
+		
 		ComponetesInfo();		
 	}
 	
@@ -96,8 +93,10 @@ public class CadastroAluno extends JPanel {
 		int y = 60;
 		int w = 294;
 		int h = 40;
+		
 		compInfoTxt[0].setBounds(15, 20, 625, h);
 		compInfoTxt[0].setFont(fonte2);
+		
 		for (int i = 1; i < compInfoTxt.length; i++) {
 			compInfoTxt[i].setBounds(x, y, w, h);
 			compInfoTxt[i].setFont(fonte2);
@@ -123,6 +122,7 @@ public class CadastroAluno extends JPanel {
 		pCurso.setLayout(null);
 		pCurso.setBackground(corFF);
 		pCurso.setBorder(BorderFactory.createTitledBorder("Cursos Do Aluno"));
+		
 		Diciplinas();
 		CodDisciplina();
 		Notas();
@@ -139,7 +139,6 @@ public class CadastroAluno extends JPanel {
 		materias.setFont(fonte2);
 		materias.setBorder(BorderFactory.createTitledBorder("Cursos"));
 		pCurso.add(materias);
-		
 	}
 	public void CodDisciplina() {		
 		int x = 15;
@@ -154,8 +153,7 @@ public class CadastroAluno extends JPanel {
 		codigoDis.setBounds(x, y, w, h);
 		codigoDis.setFont(fonte2);
 		codigoDis.setBorder(BorderFactory.createTitledBorder("Cod dics"));
-		pCurso.add(codigoDis);
-		
+		pCurso.add(codigoDis);	
 	}
 	public void Notas() {		
 		int x = 330;
@@ -167,7 +165,6 @@ public class CadastroAluno extends JPanel {
 		pNotas.setLayout(null);
 		pNotas.setBorder(BorderFactory.createTitledBorder("Notas"));
 		pNotas.setBackground(corFF);
-		
 		txtN1.setBounds(10, 20, w-20, 40);
 		txtN2.setBounds(10, 70, w-20, 40);		
 		txtMedia.setBounds(10, 120, w-20, 40);
@@ -178,12 +175,10 @@ public class CadastroAluno extends JPanel {
 		txtN2.setBorder(BorderFactory.createTitledBorder("NP2"));
 		txtMedia.setBorder(BorderFactory.createTitledBorder("Média"));
 		
-		
 		pNotas.add(txtN1);
 		pNotas.add(txtN2);
 		pNotas.add(txtMedia);
 		pCurso.add(pNotas);
-		
 	}
 	
 	public void Faltas() {
@@ -200,6 +195,7 @@ public class CadastroAluno extends JPanel {
 		for (int i = 0; i <= 20; i++) {
 			faltas.addItem(""+i);
 		}
+		
 		faltas.setBounds(10, 25, w-20, 25);
 		faltas.setFont(fonte2);
 		pFaltas.add(faltas);
@@ -215,6 +211,7 @@ public class CadastroAluno extends JPanel {
 		btnAtualizar.setBackground(new Color(100, 100, 255));
 		btnAtualizar.setFont(fonte);
 		btnAtualizar.setBorder(BorderFactory.createEmptyBorder());
+		
 		pCentral.add(btnAtualizar);
 		pCentral.add(btnCdastrar);
 	}
