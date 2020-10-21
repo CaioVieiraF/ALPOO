@@ -11,6 +11,7 @@ public class Janela extends JFrame {
 
     JPanel navigation = new JPanel();
     JPanel cadastroProfessor = new CadastroProfessor();
+    JPanel cadastroDisciplina = new CadastroDisciplina(SCREEN_WIDTH, SCREEN_HEIGHT);
     JPanel cadastro = new Cadastro(SCREEN_WIDTH, SCREEN_HEIGHT);
     JPanel consultaProf = new ConsultaProfessor(SCREEN_WIDTH, SCREEN_HEIGHT);
     JPanel login = new Login();
@@ -23,15 +24,15 @@ public class Janela extends JFrame {
     JMenu mostrar = new JMenu("Mostrar");
     JMenu cadastrar = new JMenu("Cadastrar");
     JMenu sair = new JMenu("Sair");
-    JMenuItem cadastroProfessorMenu, cadastroMenu, consultaProfMenu, loginMenu, cursosMenu, diciplinasMenu, cadastroAlunoMenu, infoAlunoMenu, sairMenu;
+    JMenuItem cadastroProfessorMenu, cadastroMenu, cadastroDisciplinaMenu ,consultaProfMenu, loginMenu, cursosMenu, diciplinasMenu, cadastroAlunoMenu, infoAlunoMenu, sairMenu;
 
 
     public Janela(){
 
         JMenuItem[] menuItensMostrar = {loginMenu, consultaProfMenu, cursosMenu, diciplinasMenu, infoAlunoMenu};
-        JMenuItem[] menuItemsCadastrar = {cadastroMenu, cadastroAlunoMenu, cadastroProfessorMenu};
-        JPanel[] panels = {login, consultaProf, cursos, diciplinas, infoAluno, cadastro, cadastroAluno, cadastroProfessor};
-        String[] panelsIDs = {"Login", "Consulta prof", "Cursos", "Diciplinas", "Info do aluno", "Cadastro", "Cadastro do Aluno", "Cadstro do Professor"};
+        JMenuItem[] menuItemsCadastrar = {cadastroMenu, cadastroAlunoMenu, cadastroProfessorMenu, cadastroDisciplinaMenu};
+        JPanel[] panels = {login, consultaProf, cursos, diciplinas, infoAluno, cadastro, cadastroAluno, cadastroProfessor, cadastroDisciplina};
+        String[] panelsIDs = {"Login", "Consulta prof", "Cursos", "Diciplinas", "Info do aluno", "Cadastro", "Cadastro do Aluno", "Cadstro do Professor","Cadastro da Disciplina"};
 
         for (int i = 0; i < menuItensMostrar.length; i++){
             menuItensMostrar[i] = new JMenuItem(panelsIDs[i]);
