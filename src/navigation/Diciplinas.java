@@ -28,6 +28,8 @@ public class Diciplinas extends JPanel{
 	JRadioButton rb2 = new JRadioButton("2");
 	JRadioButton rb3 = new JRadioButton("3");
 	JRadioButton rb4 = new JRadioButton("4");
+	JRadioButton rb5 = new JRadioButton("5");
+	JRadioButton rb6 = new JRadioButton("6");
 
 	Color WHITE = new Color(255,255,255);
 
@@ -43,8 +45,10 @@ public class Diciplinas extends JPanel{
 		rb.add(rb2);
 		rb.add(rb3);
 		rb.add(rb4);
+		rb.add(rb5);
+		rb.add(rb6);
 
-		JComponent[] jcomponent = {scrList, materias, container2, carga, cd, aulas, rb1, rb2, rb3, rb4};
+		JComponent[] jcomponent = {scrList, materias, container2, carga, cd, aulas, rb1, rb2, rb3, rb4, rb5, rb6};
 		container = util.panelDecorator(px, py, pw, ph, new Color(200, 200, 200), padding);
 		container.setLayout(null);
 
@@ -70,14 +74,18 @@ public class Diciplinas extends JPanel{
 		container2.add(rb2);
 		container2.add(rb3);
 		container2.add(rb4);
+		container2.add(rb5);
+		container2.add(rb6);
 
 		carga.setLocation(10,10);
 		cd.setLocation(10,70);
 		aulas.setLocation(x + padding, 150);
-        rb1.setBounds(10, 130, 50, h);
-        rb2.setBounds(70, 130, 50, h);
-        rb3.setBounds(130, 130, 50, h);
-        rb4.setBounds(190, 130, 50, h);
+        rb1.setBounds(10, 130, 40, h);
+        rb2.setBounds(60, 130, 40, h);
+        rb3.setBounds(110, 130, 40, h);
+        rb4.setBounds(160, 130, 40, h);
+        rb5.setBounds(210, 130, 40, h);
+        rb6.setBounds(260, 130, 40, h);
 	}
 	
 	public void setComponents(JComponent[] itens) {
