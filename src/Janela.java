@@ -11,9 +11,7 @@ public class Janela extends JFrame {
 
     JPanel navigation = new JPanel();
     JPanel cadastroProfessor = new CadastroProfessor();
-    JPanel cadastro = new Cadastro(SCREEN_WIDTH, SCREEN_HEIGHT);
     JPanel consultaProf = new ConsultaProfessor(SCREEN_WIDTH, SCREEN_HEIGHT);
-    JPanel login = new Login();
     JPanel cursos = new Cursos();
     JPanel diciplinas = new Diciplinas(SCREEN_WIDTH,SCREEN_HEIGHT);
     JPanel infoAluno = new InfoAluno(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -26,15 +24,15 @@ public class Janela extends JFrame {
     JMenu mostrar = new JMenu("Mostrar");
     JMenu cadastrar = new JMenu("Cadastrar");
     JMenu sair = new JMenu("Sair");
-    JMenuItem cadastroProfessorMenu, cadastroMenu, consultaProfMenu, loginMenu, cursosMenu, diciplinasMenu, cadastroAlunoMenu, cadastroDisciplinaMenu, infoAlunoMenu, sairMenu;
+    JMenuItem cadastroProfessorMenu, consultaProfMenu, cursosMenu, diciplinasMenu, cadastroAlunoMenu, cadastroDisciplinaMenu, infoAlunoMenu, sairMenu;
 
 
     public Janela(){
 
-        JMenuItem[] menuItensMostrar = {loginMenu, consultaProfMenu, cursosMenu, diciplinasMenu, infoAlunoMenu};
-        JMenuItem[] menuItemsCadastrar = {cadastroMenu, cadastroAlunoMenu, cadastroProfessorMenu, cadastroDisciplinaMenu};
-        JPanel[] panels = {login, consultaProf, cursos, diciplinas, infoAluno, cadastro, cadastroAluno, cadastroProfessor, cadastroDisciplina};
-        String[] panelsIDs = {"Login", "Consulta prof", "Cursos", "Diciplinas", "Info do aluno", "Cadastro", "Cadastro do Aluno", "Cadstro do Professor", "Cadastro Disciplina"};
+        JMenuItem[] menuItensMostrar = {consultaProfMenu, cursosMenu, diciplinasMenu, infoAlunoMenu};
+        JMenuItem[] menuItemsCadastrar = {cadastroAlunoMenu, cadastroProfessorMenu, cadastroDisciplinaMenu};
+        JPanel[] panels = {consultaProf, cursos, diciplinas, infoAluno, cadastroAluno, cadastroProfessor, cadastroDisciplina};
+        String[] panelsIDs = {"Consulta prof", "Cursos", "Diciplinas", "Info do aluno", "Cadastro do Aluno", "Cadstro do Professor", "Cadastro Disciplina"};
         JMenuItem[] menuP = {mostrar, cadastrar, sair};
         
         for (int i = 0; i < menuItensMostrar.length; i++){
