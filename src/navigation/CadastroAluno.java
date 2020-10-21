@@ -137,7 +137,7 @@ public class CadastroAluno extends JPanel {
 		
 		materias.setBounds(x, y, w, h);
 		materias.setFont(fonte2);
-		materias.setBorder(BorderFactory.createTitledBorder("Cursos"));
+		materias.setBorder(BorderFactory.createTitledBorder("Diciplinas"));
 		pCurso.add(materias);
 	}
 	public void CodDisciplina() {		

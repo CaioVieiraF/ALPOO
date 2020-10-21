@@ -35,7 +35,8 @@ public class Janela extends JFrame {
         JMenuItem[] menuItemsCadastrar = {cadastroMenu, cadastroAlunoMenu, cadastroProfessorMenu, cadastroDisciplinaMenu};
         JPanel[] panels = {login, consultaProf, cursos, diciplinas, infoAluno, cadastro, cadastroAluno, cadastroProfessor, cadastroDisciplina};
         String[] panelsIDs = {"Login", "Consulta prof", "Cursos", "Diciplinas", "Info do aluno", "Cadastro", "Cadastro do Aluno", "Cadstro do Professor", "Cadastro Disciplina"};
-
+        JMenuItem[] menuP = {mostrar, cadastrar, sair};
+        
         for (int i = 0; i < menuItensMostrar.length; i++){
             menuItensMostrar[i] = new JMenuItem(panelsIDs[i]);
         }
@@ -53,25 +54,23 @@ public class Janela extends JFrame {
         bar.add(sair);
         bar.setBackground(Color.DARK_GRAY);
         bar.setBorder(BorderFactory.createEmptyBorder());
-    	
-        cadastrar.setFont(fonte);
-        cadastrar.setForeground(Color.WHITE);
-        
-        mostrar.setFont(fonte);
-        mostrar.setForeground(Color.WHITE);
-        
-        sair.setFont(fonte);
-       	sair.setForeground(Color.WHITE);
        	
         sairMenu.setFont(fonte);
         sairMenu.setForeground(Color.WHITE);
         sairMenu.setBackground(Color.DARK_GRAY);
-
+        sairMenu.setBorder(BorderFactory.createEmptyBorder());
+        
+        for (JMenuItem jMenuItem : menuP) {
+			jMenuItem.setFont(fonte);
+			jMenuItem.setForeground(Color.WHITE);
+		}
+        
         for(int i = 0; i < menuItensMostrar.length; i++) { 
         	menuItensMostrar[i].setBackground(Color.DARK_GRAY);
         	menuItensMostrar[i].setForeground(Color.WHITE);
         	menuItensMostrar[i].setFont(fonte);
         }
+        
         for(int i = 0; i < menuItemsCadastrar.length; i++) {
         	menuItemsCadastrar[i].setBackground(Color.DARK_GRAY);
         	menuItemsCadastrar[i].setForeground(Color.WHITE);
