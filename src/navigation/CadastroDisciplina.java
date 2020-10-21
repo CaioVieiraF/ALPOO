@@ -8,58 +8,49 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 public class CadastroDisciplina extends JPanel{
-    //---classe Design--
     Design util = new Design();
+    Color GRAY = new Color(200, 200, 200);
+    Color WHITE = new Color(255,255,255);
 
-    // Fotnes
-    Font fonte = new Font("Arial", Font.BOLD, 25);
-    Font fonte2 = new Font("Arial", Font.CENTER_BASELINE, 12);
-    Font fonte3 = new Font("Arial", Font.CENTER_BASELINE, 22);
-
-    // ------------ Cores --------------
-    Color corF = new Color(200, 200, 200);
-    Color corFF = new Color(255, 255, 255);
-    Color corF4 = new Color(235, 235, 235);
+    // Variáveis
+    int x = 30, w = 200, h = 30;
+    int padding = 20;
+    int px = 20, py = 50;
 
     // Caixas de Texto
-    JTextField txtCodCurso = new JTextField();
-    JTextField txtCargaHoraria = new JTextField();
-    JTextField txtCodIntituto = new JTextField();
+    JTextField nmDisciplina = new JTextField();
+    JTextField cargaHoraria = new JTextField();
 
-    // -------------- Radio Buttons ----------
-    JRadioButton rdbBacharel = new JRadioButton("Bacharel");
-    JRadioButton rdbGestao = new JRadioButton("Gest�o");
-    JRadioButton rdbOutros = new JRadioButton("outros");
+    // ------------ Radio Buttons ----------
+    JRadioButton rb1 = new JRadioButton("1");
+    JRadioButton rb2 = new JRadioButton("2");
+    JRadioButton rb3 = new JRadioButton("3");
+    JRadioButton rb4 = new JRadioButton("4");
+    JRadioButton rb5 = new JRadioButton("5");
+    JRadioButton rb6 = new JRadioButton("6");
     ButtonGroup rdbGrupo = new ButtonGroup();
 
-    // Veriaveis
-    String[] nomeDisciplina = { "Estrutura de Dados", "ALPOO", "Cálculo p/ computação", "Matemática Discreta",
-            "LPOO", "IPE", "LPBD", "TAW", "Teoria dos Grafos"};
-
-    // Lista
-    JList<String> listNomeCursos = new JList<String>(nomeDisciplina);
 
     // Paineis
     JPanel pPrincipal = new JPanel();
-    JPanel pCods = new JPanel();
+    JPanel pInterno = new JPanel();
     JPanel pBotoes = new JPanel();
-
-    // JComponet
-    JComponent[] cBotoes = { rdbBacharel, rdbGestao, rdbOutros };
-    JComponent[] cCaixas = { txtCodCurso, txtCodIntituto, txtCargaHoraria };
 
     // JButtons
     JButton btnCadastrar = new JButton("Cadastrar");
 
+    // JComponet
+    JRadioButton[] buttons = { rb1, rb2, rb3, rb4, rb5, rb6};
+    JComponent[] jComponents = {nmDisciplina, cargaHoraria, btnCadastrar};
+
     public CadastroDisciplina(int screenW, int screenH) {
         Tela();
-        Painelprincipal();
+        Painel();
     }
 
     public void Tela() {
@@ -67,73 +58,58 @@ public class CadastroDisciplina extends JPanel{
         setBackground(util.FUNDO);
     }
 
-    public void Painelprincipal() {
+    public void Painel() {
         // painel principal
         pPrincipal.setLayout(null);
-        pPrincipal.setBackground(new Color(200, 200, 200));
+        pPrincipal.setBackground(GRAY);
         pPrincipal.setBounds(150, 50, 600, 450);
-        pPrincipal.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, corF));
+
+        // painel interno
+        pInterno.setLayout(null);
+        pInterno.setBounds(20,20,560,410);
+        pInterno.setBackground(WHITE);
+        pInterno.setBorder(BorderFactory.createEtchedBorder());
+
+        // painel dos RadioButtons
+        pBotoes.setLayout(null);
+        pBotoes.setBounds(x,230,330,70);
+        pBotoes.setBackground(WHITE);
+        pBotoes.setBorder(BorderFactory.createTitledBorder("Aulas p/ semana"));
+        pInterno.add(pBotoes);
+
+        //ajuste dos RadioButtons
+        for(int i = 0; i < buttons.length; i++){
+            buttons[i].setBounds(px,20, 40, h);
+            buttons[i].setBackground(WHITE);
+            buttons[i].setFont(util.FONT_REGULAR);
+            rdbGrupo.add(buttons[i]);
+            pBotoes.add(buttons[i]);
+            px += 50;
+        }
 
         // Metodos
-        ListaCursos();
-        BotoesR(cBotoes);
-        Cods(cCaixas);
+        setComponents(jComponents);
 
-        // Botoes
-        btnCadastrar.setBounds(190, 340, 160, 50);
+        // Botão Cadastrar
+        btnCadastrar.setBounds(200, 340, 150, 50);
         btnCadastrar.setBackground(util.BUTTON_COLOR);
-        btnCadastrar.setFont(fonte);
+        btnCadastrar.setFont(util.FONT_BOLD);
         btnCadastrar.setBorder(BorderFactory.createEmptyBorder());
 
-        pPrincipal.add(btnCadastrar);
-
+        pPrincipal.add(pInterno);
         add(pPrincipal);
     }
 
-    public void ListaCursos() {
-        listNomeCursos.setBounds(30, 40, 320, 280);
-        listNomeCursos.setFont(fonte3);
-        listNomeCursos.setBackground(corF4);
-        listNomeCursos.setBorder(BorderFactory.createEtchedBorder());
-        pPrincipal.add(listNomeCursos);
-    }
-
-    public void BotoesR(JComponent[] compo) {
-        pBotoes.setBounds(360, 40, 200, 100);
-        pBotoes.setLayout(new GridLayout(3, 1));
-        pBotoes.setBackground(corF4);
-        pBotoes.setFont(fonte3);
-        pBotoes.setBorder(BorderFactory.createEtchedBorder());
-
-        for (int i = 0; i < compo.length; i++) {
-            pBotoes.add(compo[i]);
+    public void setComponents(JComponent[] itens) {
+        for(int i = 0; i < itens.length; i++) {
+            itens[i].setBackground(WHITE);
+            itens[i].setFont(new Font("Arial", Font.BOLD, 20));
+            itens[i].setBounds(x, py, 400, 70);
+            pInterno.add(itens[i]);
+            py += 90;
         }
-
-        rdbGrupo.add(rdbBacharel);
-        rdbGrupo.add(rdbGestao);
-        rdbGrupo.add(rdbOutros);
-        pPrincipal.add(pBotoes);
-    }
-
-    public void Cods(JComponent[] compo) {
-        pCods.setBounds(360, 150, 200, 170);
-        pCods.setBorder(BorderFactory.createEtchedBorder());
-        pCods.setBackground(corF4);
-        pCods.setLayout(null);
-
-        compo[0].setBounds(10, 10, 180, 50);
-        compo[1].setBounds(10, 60, 180, 50);
-        compo[2].setBounds(10, 110, 180, 50);
-
-        for(JComponent compon : compo) {
-            compon.setEnabled(false);
-            compon.setFont(fonte3);
-            pCods.add(compon);
-        }
-
-        compo[0].setBorder(BorderFactory.createTitledBorder("Cod Curso"));
-        compo[1].setBorder(BorderFactory.createTitledBorder("Carga Horaria"));
-        compo[2].setBorder(BorderFactory.createTitledBorder("Cod Intituto"));
-        pPrincipal.add(pCods);
+        jComponents[0].setBorder(BorderFactory.createTitledBorder("Nome da Disciplina"));
+        jComponents[1].setBorder(BorderFactory.createTitledBorder("Carga Horária da Disciplina"));
+        jComponents[2].setBackground(util.BUTTON_COLOR);
     }
 }
