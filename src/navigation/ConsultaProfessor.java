@@ -1,5 +1,7 @@
 package navigation;
 
+import backend.ProfessoresHandler;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,9 +11,8 @@ public class ConsultaProfessor extends JPanel {
     Design utils = new Design();
     int width, height, mainPosX, mainPosY;
     JComponent panel, busca, resultado, barraDeBusca, btnBusca;
-    Color fundoPanel = new Color(220, 220, 220);
-    String[] professores = {"Ricardo Veras"};
-    JList<String> professoresComponent = new JList<>(professores);
+    ProfessoresHandler professores = new ProfessoresHandler();
+    JList<String> professoresComponent = new JList<>(professores.getNames());
 
     public ConsultaProfessor(int mainPosX, int mainPosY){
         this.width = mainPosX - mainPosX/3;
@@ -29,7 +30,7 @@ public class ConsultaProfessor extends JPanel {
 
     public void mainView(){
         resultado = new JPanel();
-        panel = utils.panelDecorator(mainPosX, mainPosY, width, height, fundoPanel, 8);
+        panel = utils.panelDecorator(mainPosX, mainPosY, width, height, PADDING);
         busca = new JPanel();
         barraDeBusca = new JTextField();
         btnBusca = new JButton("BUSCAR");

@@ -6,6 +6,7 @@ import java.awt.Font;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -18,25 +19,17 @@ import javax.swing.JTextField;
 
 public class CadastroProfessor extends JPanel implements ActionListener{
 	
-	// sobre
+	// Text Fields
 	JTextField txtIdProfessor = new JTextField();
-	JTextField txtNomeProfessor  = new JTextField();
-	JTextField txtDataNascimentoProfessor  = new JTextField();
-	
-	
-	//endereço
+	JTextField txtNomeProfessor = new JTextField();
+	JTextField txtDataNascimentoProfessor = new JTextField();
 	JTextField txtNumeroProfessor = new JTextField();
 	JTextField txtRuaProfessor = new JTextField();
 	JTextField txtBairroProfessor = new JTextField();
 	JTextField txtCidadeProfessor = new JTextField();
 	JTextField txtEstadoProfessor = new JTextField();
-	
-	// telefone
 	JTextField txtTelefoneProfessor = new JTextField();
 	JTextField txtCelulatProfessor = new JTextField();
-	
-	// DATA
-	JTextField txtDataProfessor = new JTextField();
 	
 	// Fotnes
 	Font fonte = new Font("Arial", Font.BOLD, 25);
@@ -45,7 +38,7 @@ public class CadastroProfessor extends JPanel implements ActionListener{
 	// Cores
 	Color corF = new Color(200, 200, 200);
 	Color corFF = new Color(255, 255, 255);
-	Color corF3 = new Color(250, 100, 100);
+	Color corF3 = new Color(95, 201, 70);
 	Design cor = new Design();
 	
 	// Paineis
@@ -57,10 +50,10 @@ public class CadastroProfessor extends JPanel implements ActionListener{
 	JPanel pPrincipal = new JPanel();
 	
 	// CheckBox Especializacoes
-	JCheckBox cboxInformatica = new JCheckBox("Informática");
-	JCheckBox cboxMatematica = new JCheckBox("Matemática");
+	JCheckBox cboxInformatica = new JCheckBox("InformÃ¡tica");
+	JCheckBox cboxMatematica = new JCheckBox("MatemÃ¡tica");
 	JCheckBox cboxMedicina = new JCheckBox("Medicina");
-	JCheckBox cboxCiencias = new JCheckBox("Ciências");
+	JCheckBox cboxCiencias = new JCheckBox("CiÃªncias");
 	JCheckBox cboxLetras = new JCheckBox("Letras");
 	
 	// CheckBox Titulos
@@ -71,10 +64,16 @@ public class CadastroProfessor extends JPanel implements ActionListener{
 	
 	// Lista com Os CheckBox
 	JComponent[] componentesCbox = {cboxInformatica, cboxMatematica, cboxMedicina, cboxCiencias, cboxLetras}; 
-	JComponent[] componentesCboxTitulos = {cboxBacharel, cboxEspecialistaLatoSensu, cboxMestrado, cboxDoutorado}; 
-	
+	JComponent[] componentesCboxTitulos = {cboxBacharel, cboxEspecialistaLatoSensu, cboxMestrado, cboxDoutorado};
+
+	// Lista de paineis
+	JPanel[] panels = {pEndereco, pContatos, pIdentificacao, pEspecialidades, pTitulos};
+
+	// Lista de campos de endereÃ§o
+	JTextField[] camposEndereco = {txtBairroProfessor, txtRuaProfessor, txtCidadeProfessor, txtEstadoProfessor, txtNumeroProfessor};
+
 	// Botao Atualizar cadastro
-	JButton btnAtualizar = new JButton("Atualizar");
+	JButton btnAtualizar = new JButton("Cadastrar");
 	
 	public CadastroProfessor() {
 		painel();
@@ -95,7 +94,7 @@ public class CadastroProfessor extends JPanel implements ActionListener{
 		pPrincipal.setBorder(BorderFactory.createTitledBorder("Cadastro Do Professor"));
 		pPrincipal.setBackground(corF);
 		
-		// Botão atualizar
+		// BotÃ£o atualizar
 		btnAtualizar.setBounds(220, 485, 280, 30);
 		btnAtualizar.setFont(fonte);
 		btnAtualizar.setBorder(BorderFactory.createEmptyBorder());
@@ -103,18 +102,14 @@ public class CadastroProfessor extends JPanel implements ActionListener{
 		pPrincipal.add(btnAtualizar);
 		
 		// ADD PAINEIS
-		pPrincipal.add(pIdentificacao);
-		pPrincipal.add(pContatos);
-		pPrincipal.add(pEndereco);
-		pPrincipal.add(pEspecialidades);
-		pPrincipal.add(pTitulos);
+		addItens(pPrincipal, panels);
 		add(pPrincipal);
 		
 	}
 	
 	// Todos os componentes da tela
 	public void Componentes() {
-		
+
 		setBackground(cor.FUNDO);
 		
 		Identificacao(); 
@@ -122,12 +117,10 @@ public class CadastroProfessor extends JPanel implements ActionListener{
 		Endereco();
 		Especialidades(componentesCbox);
 		Titulos(componentesCboxTitulos);
-		
-		
 	}
 	
 	public void Endereco() {
-		
+
 		// RUA/AV
 		txtRuaProfessor.setBounds(30, 25, 280, 40);
 		txtRuaProfessor.setFont(fonte2);
@@ -156,22 +149,17 @@ public class CadastroProfessor extends JPanel implements ActionListener{
 		txtEstadoProfessor.setBorder(BorderFactory.createTitledBorder("Estado"));
 		txtEstadoProfessor.setBackground(corFF);		
 		
-		// NÚMERO
+		// NÃšMERO
 		txtNumeroProfessor.setBounds(450, 65, 100, 40);
 		txtNumeroProfessor.setFont(fonte2);
 		txtNumeroProfessor.setBorder(BorderFactory.createEmptyBorder());
-		txtNumeroProfessor.setBorder(BorderFactory.createTitledBorder("N°"));
+		txtNumeroProfessor.setBorder(BorderFactory.createTitledBorder("No."));
 		txtNumeroProfessor.setBackground(corFF);
 		
-		
-		pEndereco.add(txtBairroProfessor);		
-		pEndereco.add(txtRuaProfessor);
-		pEndereco.add(txtCidadeProfessor);
-		pEndereco.add(txtEstadoProfessor);
-		pEndereco.add(txtNumeroProfessor);
+		addItens(pEndereco, camposEndereco);
 		
 		// Painel Endereco
-		pEndereco.setBorder(BorderFactory.createTitledBorder("Endereço"));
+		pEndereco.setBorder(BorderFactory.createTitledBorder("EndereÃ§o"));
 		pEndereco.setBackground(corFF);
 		pEndereco.setLayout(null);
 		pEndereco.setBounds(30, 200, 630, 120);
@@ -237,7 +225,7 @@ public class CadastroProfessor extends JPanel implements ActionListener{
 		// Painel Identificacao
 		
 		pIdentificacao.setLayout(null);
-		pIdentificacao.setBorder(BorderFactory.createTitledBorder("Identificação"));
+		pIdentificacao.setBorder(BorderFactory.createTitledBorder("IdentificaÃ§Ã£o"));
 		pIdentificacao.setBackground(corFF);
 		pIdentificacao.setBounds(30, 40, 630, 80);
 		add(pIdentificacao);
@@ -246,26 +234,21 @@ public class CadastroProfessor extends JPanel implements ActionListener{
 	
 	public void Especialidades(JComponent[] comp) {
 		int cont = 50;
-		for(int i = 0; i < comp.length; i++) {
-			comp[i].setBounds(cont, 30, 100, 40);
-			comp[i].setBackground(corFF);			
+		for (JComponent component : comp) {
+			component.setBounds(cont, 30, 100, 40);
+			component.setBackground(corFF);
 			cont += 100;
 		}
 		
-		pEspecialidades.add(comp[0]);
-		pEspecialidades.add(comp[1]);
-		pEspecialidades.add(comp[2]);
-		pEspecialidades.add(comp[3]);
-		pEspecialidades.add(comp[4]);
+		addItens(pEspecialidades, comp);
 		
 		// Painel Especialidades
 		pEspecialidades.setLayout(null);
-		pEspecialidades.setBorder(BorderFactory.createTitledBorder("Especializações"));
+		pEspecialidades.setBorder(BorderFactory.createTitledBorder("EspecializaÃ§Ãµes"));
 		pEspecialidades.setBackground(corFF);
 		pEspecialidades.setBounds(30, 320, 630, 80);
 		add(pEspecialidades);
 	}
-	
 	public void Titulos(JComponent[] comp) {
 		
 		comp[0].setBackground(corFF);			
@@ -279,20 +262,22 @@ public class CadastroProfessor extends JPanel implements ActionListener{
 		comp[2].setBackground(corFF);	
 		
 		comp[3].setBounds(430, 30, 100, 40);
-		comp[3].setBackground(corFF);	
-		
-		pTitulos.add(comp[0]);
-		pTitulos.add(comp[1]);
-		pTitulos.add(comp[2]);
-		pTitulos.add(comp[3]);
+		comp[3].setBackground(corFF);
+
+		addItens(pTitulos, comp);
 		
 		// Painel Especialidades
 		pTitulos.setLayout(null);
-		pTitulos.setBorder(BorderFactory.createTitledBorder("Títulos"));
+		pTitulos.setBorder(BorderFactory.createTitledBorder("TÃ­tulos"));
 		pTitulos.setBackground(corFF);
 		pTitulos.setBounds(30, 400, 630, 80);
 		add(pTitulos);
 	}
+
+	public void addItens(JPanel surface, JComponent[] itens){
+		for (JComponent item : itens) surface.add(item);
+	}
+
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {

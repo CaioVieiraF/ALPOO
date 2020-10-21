@@ -15,4 +15,11 @@ public class Design {
 		container.setBackground(cor);
 		return container;
 	}
+
+	public JPanel panelDecorator(int posX, int posY, int width, int height, int padding){
+		JPanel container = new JPanel();
+		container.setBounds(posX-padding, posY-padding, width+padding*2, height+padding*2);
+		container.setBackground(new Color(220, 220, 220));
+		return container;
+	}
 }

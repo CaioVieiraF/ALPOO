@@ -5,18 +5,63 @@ import java.awt.*;
 
 public class InfoAluno extends JPanel {
 
-    JPanel panel;
+    int PADDING = 8;
     Design utils = new Design();
-    int mainPosX, mainPosY, width, height;
+    int width, height, mainPosX, mainPosY;
+    JComponent panel, busca, resultado, barraDeBusca, btnBusca;
+    String[] alunos = {"Caio Vieira", "Gustavo dos Santos", "Lucas Augusto"};
+    JList<String> professoresComponent = new JList<>(alunos);
 
-    public InfoAluno(int mainSizeX, int mainSizeY){
-        width = mainSizeX - mainSizeX/3;
-        height = mainSizeY - mainSizeY/3;
-        this.mainPosX = mainSizeX/2 - width/2;
-        this.mainPosY = mainSizeY/2 - height/2;
-        panel = utils.panelDecorator(mainPosX, mainPosY, width, height, new Color(170, 170, 170), 8);
-
+    public InfoAluno(int mainPosX, int mainPosY){
+        this.width = mainPosX - mainPosX/3;
+        this.height = mainPosY - mainPosY/3;
+        this.mainPosX = mainPosX/2 - width/2;
+        this.mainPosY = mainPosY/2 - height/2 - height/10;
+        
+        mainView();
         setLayout(null);
-        add(panel);
+        setBackground(utils.FUNDO);
+        JComponent[] components = {busca, resultado, panel};
+        addItens(components);
+
     }
+
+    public void mainView(){
+        resultado = new JPanel();
+        panel = utils.panelDecorator(mainPosX, mainPosY, width, height, PADDING);
+        busca = new JPanel();
+        barraDeBusca = new JTextField();
+        btnBusca = new JButton("BUSCAR");
+
+        btnBusca.setBackground(utils.BUTTON_COLOR);
+        btnBusca.setFont(utils.FONT_BOLD);
+        btnBusca.setBorder(BorderFactory.createLineBorder(utils.BUTTON_COLOR, 5));
+
+        professoresComponent.setFont(utils.FONT_BOLD);
+        searchView();
+        infoView();
+    }
+
+    public void addItens(JComponent[] components){
+        for (JComponent component : components){
+            add(component);
+        }
+    }
+
+    public void searchView(){
+        busca.setLayout(new BorderLayout());
+        busca.setBounds(mainPosX, mainPosY, width/2, height);
+        busca.add(barraDeBusca, BorderLayout.NORTH);
+        busca.add(professoresComponent, BorderLayout.CENTER);
+        busca.add(btnBusca, BorderLayout.SOUTH);
+    }
+
+    public void infoView(){
+        resultado.setLayout(new BorderLayout());
+        resultado.setBounds(mainPosX+width/2, mainPosY, width/2, height);
+        resultado.setBorder(BorderFactory.createLineBorder(new Color(170, 170, 170)));
+
+
+    }
+
 }

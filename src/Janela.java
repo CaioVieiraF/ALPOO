@@ -18,7 +18,7 @@ public class Janela extends JFrame {
     JPanel cadastroAluno = new CadastroAluno();
     JPanel cadastroDisciplina = new CadastroDisciplina(SCREEN_WIDTH,SCREEN_HEIGHT);
     
-    Font fonte = new Font("Arial Black", Font.BOLD, 12);
+    Font fonte = new Font("Arial", Font.BOLD, 12);
     
     JMenuBar bar = new JMenuBar();
     JMenu mostrar = new JMenu("Mostrar");
