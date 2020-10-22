@@ -5,19 +5,23 @@ import javax.swing.border.EtchedBorder;
 import java.awt.*;
 
 public class Diciplinas extends JPanel{
-	int x = 400, w = 200, h = 30;
+	//Variáveis
+	int x = 400, w = 200, h = 30 , rbc = 10;
 	int px, py, pw, ph;
 	int p2 = 360;
 	int padding = 20;
 
 	Design util = new Design();
-	String[] materia = {"Estrututra de Dados", "LPBD", "Ciências Sociais", "Cálculo p/ Computação", "Matemática Discreta", "ALPOO"," taw ", "ipe", "lpoo", "libras (optativa)","Direitos Humanos (optativa)","rel. Etica..."};
+	String[] materia = {"Estrututra de Dados", "LPBD", "Ciências Sociais", "Cálculo p/ Computação", "Matemática Discreta",
+					"ALPOO"," taw ", "ipe", "lpoo", "libras (optativa)","Direitos Humanos (optativa)","rel. Etica..."};
 	String[] professores = {"Paulo", "Alvaro","Norberto", "Luiz Gobita", "Gustavo", "Marcos", "Ricardo Veras"};
 	JList<String> materias = new JList<String>(materia);
 
 	JLabel aulas = new JLabel("Aulas por semana:");
 	JLabel carga = new JLabel("Carga horária: " + "80hr");
 	JLabel cd = new JLabel("Código da disciplina: " + "7AB8");
+
+	JTextField eDisciplina = new JTextField();
 
 	JPanel container;
 	JPanel container2 = new JPanel();
@@ -41,14 +45,13 @@ public class Diciplinas extends JPanel{
 		setLayout(null);
 		setBackground(util.FUNDO);
 
-		rb.add(rb1);
-		rb.add(rb2);
-		rb.add(rb3);
-		rb.add(rb4);
-		rb.add(rb5);
-		rb.add(rb6);
-
 		JComponent[] jcomponent = {scrList, materias, container2, carga, cd, aulas, rb1, rb2, rb3, rb4, rb5, rb6};
+		JRadioButton[] rbList = {rb1, rb2, rb3, rb4, rb5, rb6};
+
+		for (int i = 0; i < rbList.length; i++){
+			rb.add(rbList[i]);
+		}
+
 		container = util.panelDecorator(px, py, pw, ph, new Color(200, 200, 200), padding);
 		container.setLayout(null);
 
@@ -60,32 +63,26 @@ public class Diciplinas extends JPanel{
 		container2.setLayout(null);
 		container2.setBounds(x - padding,80,330,p2);
 		container2.setBackground(WHITE);
-		container2.setBorder(BorderFactory.createEtchedBorder());
+		container2.setBorder(BorderFactory.createTitledBorder("Informações"));
 
         scrList.setViewportView(materias);
 		scrList.setBounds(20, 80, p2 - padding, p2);
 		scrList.setBackground(WHITE);
 		scrList.setBorder(BorderFactory.createTitledBorder("Selecione uma disciplina"));
 
-		container2.add(carga);
-		container2.add(cd);
-		container2.add(aulas);
-		container2.add(rb1);
-		container2.add(rb2);
-		container2.add(rb3);
-		container2.add(rb4);
-		container2.add(rb5);
-		container2.add(rb6);
+		for (int i = 3; i < jcomponent.length; i ++){
+			container2.add(jcomponent[i]);
+		}
 
 		carga.setLocation(10,10);
 		cd.setLocation(10,70);
 		aulas.setLocation(x + padding, 150);
-        rb1.setBounds(10, 130, 40, h);
-        rb2.setBounds(60, 130, 40, h);
-        rb3.setBounds(110, 130, 40, h);
-        rb4.setBounds(160, 130, 40, h);
-        rb5.setBounds(210, 130, 40, h);
-        rb6.setBounds(260, 130, 40, h);
+
+		for (int i =  0; i < rbList.length; i++){
+			rbList[i].setBounds(rbc, 130, 40, h);
+			rbc += 50;
+		}
+
 	}
 	
 	public void setComponents(JComponent[] itens) {
@@ -96,7 +93,11 @@ public class Diciplinas extends JPanel{
 			itens[i].setBorder(BorderFactory.createEmptyBorder());
 			itens[i].setFont(new Font("Ubuntu Mono", Font.BOLD, 20));
 			container.add(itens[i]);
-
 		}
+		eDisciplina.setBounds(20, 20, 340, 50);
+		eDisciplina.setBackground(WHITE);
+		eDisciplina.setBorder(BorderFactory.createTitledBorder("Busque uma disciplina"));
+		eDisciplina.setFont(util.FONT_BOLD);
+		container.add(eDisciplina);
 	}
 }
