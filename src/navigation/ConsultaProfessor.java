@@ -1,7 +1,5 @@
 package navigation;
 
-import backend.ProfessoresHandler;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,8 +9,8 @@ public class ConsultaProfessor extends JPanel {
     Design utils = new Design();
     int width, height, mainPosX, mainPosY;
     JComponent panel, busca, resultado, barraDeBusca, btnBusca;
-    ProfessoresHandler professores = new ProfessoresHandler();
-    JList<String> professoresComponent = new JList<>(professores.getNames());
+    String[] professores = {"Ricardo Veras"};
+    JList<String> professoresComponent = new JList<>(professores);
 
     public ConsultaProfessor(int mainPosX, int mainPosY){
         this.width = mainPosX - mainPosX/3;

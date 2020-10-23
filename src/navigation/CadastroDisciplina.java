@@ -1,5 +1,7 @@
 package navigation;
 
+import backend.DiciplinasHandler;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -34,7 +36,6 @@ public class CadastroDisciplina extends JPanel{
     JRadioButton rb5 = new JRadioButton("5");
     JRadioButton rb6 = new JRadioButton("6");
     ButtonGroup rdbGrupo = new ButtonGroup();
-
 
     // Paineis
     JPanel pPrincipal = new JPanel();
@@ -78,12 +79,12 @@ public class CadastroDisciplina extends JPanel{
         pInterno.add(pBotoes);
 
         //ajuste dos RadioButtons
-        for(int i = 0; i < buttons.length; i++){
-            buttons[i].setBounds(px,20, 40, h);
-            buttons[i].setBackground(WHITE);
-            buttons[i].setFont(util.FONT_REGULAR);
-            rdbGrupo.add(buttons[i]);
-            pBotoes.add(buttons[i]);
+        for (JRadioButton button : buttons) {
+            button.setBounds(px, 20, 40, h);
+            button.setBackground(WHITE);
+            button.setFont(util.FONT_REGULAR);
+            rdbGrupo.add(button);
+            pBotoes.add(button);
             px += 50;
         }
 
@@ -95,17 +96,21 @@ public class CadastroDisciplina extends JPanel{
         btnCadastrar.setBackground(util.BUTTON_COLOR);
         btnCadastrar.setFont(util.FONT_BOLD);
         btnCadastrar.setBorder(BorderFactory.createEmptyBorder());
+        btnCadastrar.addActionListener(actionEvent -> {
+            DiciplinasHandler handler = new DiciplinasHandler();
+            handler.cadastrarDiciplina();
+        });
 
         pPrincipal.add(pInterno);
         add(pPrincipal);
     }
 
     public void setComponents(JComponent[] itens) {
-        for(int i = 0; i < itens.length; i++) {
-            itens[i].setBackground(WHITE);
-            itens[i].setFont(new Font("Arial", Font.BOLD, 20));
-            itens[i].setBounds(x, py, 400, 70);
-            pInterno.add(itens[i]);
+        for (JComponent iten : itens) {
+            iten.setBackground(WHITE);
+            iten.setFont(new Font("Arial", Font.BOLD, 20));
+            iten.setBounds(x, py, 400, 70);
+            pInterno.add(iten);
             py += 90;
         }
         jComponents[0].setBorder(BorderFactory.createTitledBorder("Nome da Disciplina"));
