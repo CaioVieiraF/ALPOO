@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
 
-public class Diciplinas extends JPanel{
+public class Disciplinas extends JPanel{
 	//Variáveis
 	int x = 400, w = 200, h = 30 , rbc = 10;
 	int px, py, pw, ph;
@@ -37,7 +37,7 @@ public class Diciplinas extends JPanel{
 
 	Color WHITE = new Color(255,255,255);
 
-	public Diciplinas(int screenW, int screenH){
+	public Disciplinas(int screenW, int screenH){
         this.pw = 700;
         this.ph = 450;
         this.px = (screenW / 2) - (pw / 2);
