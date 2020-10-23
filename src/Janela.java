@@ -21,7 +21,7 @@ public class Janela extends JFrame {
     JPanel alunoDisciplina = new AlunoDisciplina();
     JPanel cursoDisciplina = new CursoDisciplina();
     JPanel cursoProfessor = new CursoProfessor();
-    JPanel ProfessorDisciplina = new CursoProfessor();
+    JPanel ProfessorDisciplina = new ProfessorDisciplina();
     
     Font fonte = new Font("Arial", Font.BOLD, 12);
     
