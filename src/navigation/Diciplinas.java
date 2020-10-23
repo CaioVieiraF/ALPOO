@@ -82,7 +82,6 @@ public class Diciplinas extends JPanel{
 			rbList[i].setBounds(rbc, 130, 40, h);
 			rbc += 50;
 		}
-
 	}
 	
 	public void setComponents(JComponent[] itens) {
