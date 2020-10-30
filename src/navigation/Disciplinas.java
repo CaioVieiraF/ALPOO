@@ -1,5 +1,7 @@
 package navigation;
 
+import backend.DiciplinasHandler;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -10,10 +12,12 @@ public class Disciplinas extends JPanel{
 	int p2 = 360;
 	int padding = 20;
 
+	DiciplinasHandler disciplina = new DiciplinasHandler();
 	Design util = new Design();
-	String[] materia = {"Estrututra de Dados", "LPBD", "Ciências Sociais", "Cálculo p/ Computação", "Matemática Discreta",
-					"ALPOO"," taw ", "ipe", "lpoo", "libras (optativa)","Direitos Humanos (optativa)","rel. Etica..."};
-	String[] professores = {"Paulo", "Alvaro","Norberto", "Luiz Gobita", "Gustavo", "Marcos", "Ricardo Veras"};
+//	String[] materia = {"Estrututra de Dados", "LPBD", "Ciências Sociais", "Cálculo p/ Computação", "Matemática Discreta",
+//					"ALPOO"," taw ", "ipe", "lpoo", "libras (optativa)","Direitos Humanos (optativa)","rel. Etica..."};
+//	String[] professores = {"Paulo", "Alvaro","Norberto", "Luiz Gobita", "Gustavo", "Marcos", "Ricardo Veras"};
+	Diciplina[] disciplinas = disciplina.getDiciplinas();
 	JList<String> materias = new JList<String>(materia);
 
 	JLabel aulas = new JLabel("Aulas por semana:");

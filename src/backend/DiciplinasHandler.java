@@ -6,13 +6,13 @@ import java.util.Arrays;
 
 public class DiciplinasHandler {
 
-    static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
-    static final String DB_URL = "jdbc:mariadb://localhost:3306/faculdade";
+    static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
+    static final String DB_URL = "jdbc:mysql://localhost:3306/faculdade";
 //    static final String DB_URL = "jdbc:mariadb://18.231.167.221/faculdade?user=alpoo?password=password";
 
     //  Credenciais do banco
-    static final String USER = "alpoo";
-    static final String PASS = "password";
+    static final String USER = "root";
+    static final String PASS = "root";
 
     public void cadastrarDiciplina(JTextField nmDisciplina, JTextField cargaHoraria, int selection){
         Connection conn = null;
@@ -30,14 +30,15 @@ public class DiciplinasHandler {
             System.out.println("Inserindo dados na tabela ...");
             stmt = conn.createStatement();
 
-            String sql = "INSERT INTO diciplinas"
-                    + "VALUES("
-                    + nmDisciplina.getText() + ","
+            String sql = "INSERT INTO disciplinas "
+                    + "VALUES(default,'"
+                    + nmDisciplina.getText() + "',"
                     + cargaHoraria.getText() + ","
                     + selection
                     + ");";
 
             stmt.executeUpdate(sql);
+            System.out.println("Inserido com sucesso!");
         } catch (Exception se) {
             se.printStackTrace();
         }
