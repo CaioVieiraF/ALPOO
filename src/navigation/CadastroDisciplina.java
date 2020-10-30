@@ -42,7 +42,7 @@ public class CadastroDisciplina extends JPanel{
     JPanel pBotoes = new JPanel();
 
     // JButtons
-    JButton btnCadastrar = new JButton("Não aperta");
+    JButton btnCadastrar = new JButton("Inserir");
 
     // JComponet
     JRadioButton[] buttons = { rb1, rb2, rb3, rb4, rb5, rb6};
