@@ -117,4 +117,61 @@ public class DiciplinasHandler {
         }
         return null;
     }
+
+    public Diciplina[] getDiciplinas(String nome){
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            // Registro do driver
+            Class.forName(JDBC_DRIVER);
+
+            // Abrindo conexão
+            System.out.println("Conectando com o banco de dados...");
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            System.out.println("Conectado com sucesso");
+
+            // Queries
+            System.out.println("Coletando dados na tabela ...");
+            stmt = conn.createStatement();
+
+            String sql = "SELECT * FROM disciplinas WHERE nome like '%" +nome + "%' ORDER BY nome";
+
+            ResultSet diciplinasQuery =  stmt.executeQuery(sql);
+            Diciplina[] diciplinas = {};
+
+            while(diciplinasQuery.next()){
+                Diciplina diciplina = new Diciplina();
+
+                diciplina.cargaHoraria = diciplinasQuery.getInt("carga");
+                diciplina.id = diciplinasQuery.getInt("id");
+                diciplina.dias = diciplinasQuery.getInt("dia");
+                diciplina.nome = diciplinasQuery.getString("nome");
+
+                diciplinas = Arrays.copyOf(diciplinas, diciplinas.length + 1);
+                diciplinas[diciplinas.length - 1] = diciplina;
+            }
+
+            return diciplinas;
+        } catch (Exception se) {
+            se.printStackTrace();
+        }
+        finally {
+            // Fechando conexões
+            try {
+                if (stmt != null) {
+                    conn.close();
+                }
+            } catch (SQLException ignored) {
+
+            }
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
+        return null;
+    }
 }

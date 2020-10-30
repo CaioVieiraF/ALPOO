@@ -5,6 +5,7 @@ import backend.DiciplinasHandler;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -22,10 +23,14 @@ public class Disciplinas extends JPanel{
 	Diciplina[] disciplinas = disciplina.getDiciplinas();
 
 	JLabel aulas = new JLabel("Aulas por semana:");
-	JLabel carga = new JLabel("Carga horária: " + "80hr");
-	JLabel cd = new JLabel("Código da disciplina: " + "7AB8");
+	JLabel carga = new JLabel("Carga horária: ");
+	JLabel cd = new JLabel("Código da disciplina: ");
+
+	JButton buscar = new JButton("Buscar");
 
 	JTextField eDisciplina = new JTextField();
+
+	JList<String> materias;
 
 	JPanel container;
 	JPanel container2 = new JPanel();
@@ -54,7 +59,7 @@ public class Disciplinas extends JPanel{
 			disciplinasNome[disciplinasNome.length - 1] = disc.nome;
 		}
 
-		JList<String> materias = new JList<String>(disciplinasNome);
+		materias = new JList<String>(disciplinasNome);
 		JComponent[] jcomponent = {scrList, materias, container2, carga, cd, aulas, rb1, rb2, rb3, rb4, rb5, rb6};
 		JRadioButton[] rbList = {rb1, rb2, rb3, rb4, rb5, rb6};
 
@@ -64,10 +69,12 @@ public class Disciplinas extends JPanel{
 
 		//Eventos do JList
 		materias.addListSelectionListener(listSelectListener -> {
-			Diciplina valor = disciplinas [materias.getSelectedIndex()];
-			carga.setText("Carga horária: " + valor.cargaHoraria + "hr");
-			cd.setText("Código da disciplina: " + valor.id);
-			rbList[valor.dias - 1].setSelected(true);
+			if(materias.getSelectedIndex() >= 0) {
+				Diciplina valor = disciplinas[materias.getSelectedIndex()];
+				carga.setText("Carga horária: " + valor.cargaHoraria + "hr");
+				cd.setText("Código da disciplina: " + valor.id);
+				rbList[valor.dias - 1].setSelected(true);
+			}
 		});
 
 		container = util.panelDecorator(px, py, pw, ph, new Color(200, 200, 200), padding);
@@ -111,10 +118,31 @@ public class Disciplinas extends JPanel{
 			itens[i].setFont(new Font("Ubuntu Mono", Font.BOLD, 20));
 			container.add(itens[i]);
 		}
+		//campo de busca
 		eDisciplina.setBounds(20, 20, 340, 50);
 		eDisciplina.setBackground(WHITE);
 		eDisciplina.setBorder(BorderFactory.createTitledBorder("Busque uma disciplina"));
 		eDisciplina.setFont(util.FONT_BOLD);
+
+		//botão buscar
+		buscar.setBounds(380, 20, 90, 50);
+		buscar.setBackground(util.BUTTON_COLOR);
+		buscar.setBorder(BorderFactory.createEmptyBorder());
+		buscar.setFont(util.FONT_BOLD);
+
 		container.add(eDisciplina);
+		container.add(buscar);
+
+		//evento do botão
+		buscar.addActionListener(actionEvent -> {
+			disciplinas = disciplina.getDiciplinas(eDisciplina.getText());
+			String[] disciplinasNome = {};
+			for(Diciplina disc : disciplinas){
+				disciplinasNome = Arrays.copyOf(disciplinasNome, disciplinasNome.length + 1);
+				disciplinasNome[disciplinasNome.length - 1] = disc.nome;
+			}
+			materias.setListData(disciplinasNome);
+			materias.clearSelection();
+		});
 	}
 }
