@@ -26,7 +26,10 @@ public class Disciplinas extends JPanel{
 	JLabel carga = new JLabel("Carga horária: ");
 	JLabel cd = new JLabel("Código da disciplina: ");
 
-	JButton buscar = new JButton("Buscar");
+	JButton buscar= new JButton ("Buscar");
+	JButton  atualizar= new JButton ("Atualizar");
+	JButton excluir= new JButton ("Exlcuir");
+	JButton [] botoes = {buscar, atualizar, excluir};
 
 	JTextField eDisciplina = new JTextField();
 
@@ -124,17 +127,43 @@ public class Disciplinas extends JPanel{
 		eDisciplina.setBorder(BorderFactory.createTitledBorder("Busque uma disciplina"));
 		eDisciplina.setFont(util.FONT_BOLD);
 
-		//botão buscar
-		buscar.setBounds(380, 20, 90, 50);
-		buscar.setBackground(util.BUTTON_COLOR);
-		buscar.setBorder(BorderFactory.createEmptyBorder());
-		buscar.setFont(util.FONT_BOLD);
+		//botões
+		int n = 380;
+		for(int i = 0; i < botoes.length; i++){
+			botoes[i].setBounds(n, 20, 105, 50);
+			botoes[i].setBackground(util.BUTTON_COLOR);
+			botoes[i].setBorder(BorderFactory.createEmptyBorder());
+			botoes[i].setFont(util.FONT_BOLD);
+			container.add(botoes[i]);
+			n += 110;
+		}
 
 		container.add(eDisciplina);
-		container.add(buscar);
 
-		//evento do botão
+		//evento dos botões
 		buscar.addActionListener(actionEvent -> {
+			disciplinas = disciplina.getDiciplinas(eDisciplina.getText());
+			String[] disciplinasNome = {};
+			for(Diciplina disc : disciplinas){
+				disciplinasNome = Arrays.copyOf(disciplinasNome, disciplinasNome.length + 1);
+				disciplinasNome[disciplinasNome.length - 1] = disc.nome;
+			}
+			materias.setListData(disciplinasNome);
+			materias.clearSelection();
+		});
+
+		atualizar.addActionListener(actionEvent -> {
+			disciplinas = disciplina.getDiciplinas(eDisciplina.getText());
+			String[] disciplinasNome = {};
+			for(Diciplina disc : disciplinas){
+				disciplinasNome = Arrays.copyOf(disciplinasNome, disciplinasNome.length + 1);
+				disciplinasNome[disciplinasNome.length - 1] = disc.nome;
+			}
+			materias.setListData(disciplinasNome);
+			materias.clearSelection();
+		});
+
+		excluir.addActionListener(actionEvent -> {
 			disciplinas = disciplina.getDiciplinas(eDisciplina.getText());
 			String[] disciplinasNome = {};
 			for(Diciplina disc : disciplinas){
