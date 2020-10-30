@@ -1,7 +1,6 @@
 package navigation;
 
 import javax.swing.*;
-import javax.swing.border.EtchedBorder;
 import java.awt.*;
 
 public class Diciplinas extends JPanel{

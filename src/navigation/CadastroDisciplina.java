@@ -4,7 +4,6 @@ import backend.DiciplinasHandler;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -43,7 +42,7 @@ public class CadastroDisciplina extends JPanel{
     JPanel pBotoes = new JPanel();
 
     // JButtons
-    JButton btnCadastrar = new JButton("Cadastrar");
+    JButton btnCadastrar = new JButton("Não aperta");
 
     // JComponet
     JRadioButton[] buttons = { rb1, rb2, rb3, rb4, rb5, rb6};
@@ -98,7 +97,17 @@ public class CadastroDisciplina extends JPanel{
         btnCadastrar.setBorder(BorderFactory.createEmptyBorder());
         btnCadastrar.addActionListener(actionEvent -> {
             DiciplinasHandler handler = new DiciplinasHandler();
-            handler.cadastrarDiciplina();
+
+            int i = 0;
+            boolean condition = true;
+            while (condition && i < buttons.length){
+                if (buttons[i].isSelected()){
+                    condition = false;
+                    handler.cadastrarDiciplina(nmDisciplina, cargaHoraria, Integer.parseInt(buttons[i].getText()));
+                }
+                i++;
+            }
+
         });
 
         pPrincipal.add(pInterno);
