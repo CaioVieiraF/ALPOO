@@ -61,7 +61,7 @@ public class DiciplinasHandler {
         }
     }
 
-    public void getDiciplinas(Diciplina[] returnVal){
+    public Diciplina[] getDiciplinas(){
         Connection conn = null;
         Statement stmt = null;
         try {
@@ -94,7 +94,7 @@ public class DiciplinasHandler {
                 diciplinas[diciplinas.length - 1] = diciplina;
             }
 
-            returnVal = diciplinas;
+            return diciplinas;
         } catch (Exception se) {
             se.printStackTrace();
         }
@@ -115,5 +115,6 @@ public class DiciplinasHandler {
                 se.printStackTrace();
             }
         }
+        return null;
     }
 }
