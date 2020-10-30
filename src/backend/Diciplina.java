@@ -1,9 +1,9 @@
 package backend;
 
 public class Diciplina {
-    int id;
-    String nome;
-    int cargaHoraria;
-    int dias;
+    public int id;
+    public String nome;
+    public int cargaHoraria;
+    public int dias;
 
 }

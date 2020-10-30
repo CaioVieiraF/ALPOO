@@ -1,9 +1,12 @@
 package navigation;
 
+import backend.Diciplina;
 import backend.DiciplinasHandler;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Disciplinas extends JPanel{
 	//Variáveis
@@ -14,11 +17,9 @@ public class Disciplinas extends JPanel{
 
 	DiciplinasHandler disciplina = new DiciplinasHandler();
 	Design util = new Design();
-//	String[] materia = {"Estrututra de Dados", "LPBD", "Ciências Sociais", "Cálculo p/ Computação", "Matemática Discreta",
-//					"ALPOO"," taw ", "ipe", "lpoo", "libras (optativa)","Direitos Humanos (optativa)","rel. Etica..."};
-//	String[] professores = {"Paulo", "Alvaro","Norberto", "Luiz Gobita", "Gustavo", "Marcos", "Ricardo Veras"};
+
+	String[] disciplinasNome = {};
 	Diciplina[] disciplinas = disciplina.getDiciplinas();
-	JList<String> materias = new JList<String>(materia);
 
 	JLabel aulas = new JLabel("Aulas por semana:");
 	JLabel carga = new JLabel("Carga horária: " + "80hr");
@@ -48,12 +49,26 @@ public class Disciplinas extends JPanel{
 		setLayout(null);
 		setBackground(util.FUNDO);
 
+		for(Diciplina disc : disciplinas){
+			disciplinasNome = Arrays.copyOf(disciplinasNome, disciplinasNome.length + 1);
+			disciplinasNome[disciplinasNome.length - 1] = disc.nome;
+		}
+
+		JList<String> materias = new JList<String>(disciplinasNome);
 		JComponent[] jcomponent = {scrList, materias, container2, carga, cd, aulas, rb1, rb2, rb3, rb4, rb5, rb6};
 		JRadioButton[] rbList = {rb1, rb2, rb3, rb4, rb5, rb6};
 
 		for (int i = 0; i < rbList.length; i++){
 			rb.add(rbList[i]);
 		}
+
+		//Eventos do JList
+		materias.addListSelectionListener(listSelectListener -> {
+			Diciplina valor = disciplinas [materias.getSelectedIndex()];
+			carga.setText("Carga horária: " + valor.cargaHoraria + "hr");
+			cd.setText("Código da disciplina: " + valor.id);
+			rbList[valor.dias - 1].setSelected(true);
+		});
 
 		container = util.panelDecorator(px, py, pw, ph, new Color(200, 200, 200), padding);
 		container.setLayout(null);

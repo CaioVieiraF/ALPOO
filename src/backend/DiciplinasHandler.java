@@ -74,10 +74,10 @@ public class DiciplinasHandler {
             System.out.println("Conectado com sucesso");
 
             // Queries
-            System.out.println("Inserindo dados na tabela ...");
+            System.out.println("Coletando dados na tabela ...");
             stmt = conn.createStatement();
 
-            String sql = "SELECT * FROM diciplinas ORDER BY nome";
+            String sql = "SELECT * FROM disciplinas ORDER BY nome";
 
             ResultSet diciplinasQuery =  stmt.executeQuery(sql);
             Diciplina[] diciplinas = {};
@@ -85,9 +85,9 @@ public class DiciplinasHandler {
             while(diciplinasQuery.next()){
                 Diciplina diciplina = new Diciplina();
 
-                diciplina.cargaHoraria = diciplinasQuery.getInt("carga_horaria");
+                diciplina.cargaHoraria = diciplinasQuery.getInt("carga");
                 diciplina.id = diciplinasQuery.getInt("id");
-                diciplina.dias = diciplinasQuery.getInt("dias");
+                diciplina.dias = diciplinasQuery.getInt("dia");
                 diciplina.nome = diciplinasQuery.getString("nome");
 
                 diciplinas = Arrays.copyOf(diciplinas, diciplinas.length + 1);
