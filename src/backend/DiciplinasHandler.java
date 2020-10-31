@@ -216,4 +216,50 @@ public class DiciplinasHandler {
             }
         }
     }
+
+    public void atualizarDisciplina(Diciplina novo){
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            // Registro do driver
+            Class.forName(JDBC_DRIVER);
+
+            // Abrindo conexão
+            System.out.println("Conectando com o banco de dados...");
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            System.out.println("Conectado com sucesso");
+
+            // Queries
+            System.out.println("Coletando dados na tabela ...");
+            stmt = conn.createStatement();
+
+            String sql = "UPDATE disciplinas"
+                    + "SET nome = " + novo.nome
+                    + ", dias = " + novo.dias
+                    + ", carga = " + novo.cargaHoraria
+                    + " WHERE id = " + novo.id;
+
+            stmt.executeUpdate(sql);
+
+        } catch (Exception se) {
+            se.printStackTrace();
+        }
+        finally {
+            // Fechando conexões
+            try {
+                if (stmt != null) {
+                    conn.close();
+                }
+            } catch (SQLException ignored) {
+
+            }
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
+    }
 }

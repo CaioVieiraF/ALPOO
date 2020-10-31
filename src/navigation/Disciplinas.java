@@ -5,8 +5,6 @@ import backend.DiciplinasHandler;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Disciplinas extends JPanel{
@@ -22,9 +20,9 @@ public class Disciplinas extends JPanel{
 	String[] disciplinasNome = {};
 	Diciplina[] disciplinas = disciplina.getDisciplinas();
 
-	JLabel aulas = new JLabel("Aulas por semana:");
-	JLabel carga = new JLabel("Carga horária: ");
-	JLabel cd = new JLabel("Código da disciplina: ");
+	JTextField aulas = new JTextField("Aulas por semana:");
+	JTextField carga = new JTextField("Carga horária: ");
+	JTextField cd = new JTextField("Código da disciplina: ");
 
 	JButton buscar= new JButton ("Buscar");
 	JButton  atualizar= new JButton ("Atualizar");
@@ -153,18 +151,9 @@ public class Disciplinas extends JPanel{
 		});
 
 		atualizar.addActionListener(actionEvent -> {
-			disciplinas = disciplina.getDisciplinas(eDisciplina.getText());
-			String[] disciplinasNome = {};
-			for(Diciplina disc : disciplinas){
-				disciplinasNome = Arrays.copyOf(disciplinasNome, disciplinasNome.length + 1);
-				disciplinasNome[disciplinasNome.length - 1] = disc.nome;
-			}
-			materias.setListData(disciplinasNome);
-			materias.clearSelection();
+
 		});
 
-		excluir.addActionListener(actionEvent ->
-			disciplina.excluirDisciplina(disciplinas[materias.getSelectedIndex()].id)
-		);
+		excluir.addActionListener(actionEvent -> disciplina.excluirDisciplina(disciplinas[materias.getSelectedIndex()].id));
 	}
 }
