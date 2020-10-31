@@ -14,7 +14,7 @@ public class DiciplinasHandler {
     static final String USER = "root";
     static final String PASS = "root";
 
-    public void cadastrarDiciplina(JTextField nmDisciplina, JTextField cargaHoraria, int selection){
+    public void cadastrarDisciplina(JTextField nmDisciplina, JTextField cargaHoraria, int selection){
         Connection conn = null;
         Statement stmt = null;
         try {
@@ -61,7 +61,7 @@ public class DiciplinasHandler {
         }
     }
 
-    public Diciplina[] getDiciplinas(){
+    public Diciplina[] getDisciplinas(){
         Connection conn = null;
         Statement stmt = null;
         try {
@@ -118,7 +118,7 @@ public class DiciplinasHandler {
         return null;
     }
 
-    public Diciplina[] getDiciplinas(String nome){
+    public Diciplina[] getDisciplinas(String nome){
         Connection conn = null;
         Statement stmt = null;
         try {
@@ -173,5 +173,47 @@ public class DiciplinasHandler {
             }
         }
         return null;
+    }
+
+    public void excluirDisciplina(int id){
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            // Registro do driver
+            Class.forName(JDBC_DRIVER);
+
+            // Abrindo conexão
+            System.out.println("Conectando com o banco de dados...");
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            System.out.println("Conectado com sucesso");
+
+            // Queries
+            System.out.println("Coletando dados na tabela ...");
+            stmt = conn.createStatement();
+
+            String sql = "DELETE FROM disciplinas WHERE id = " + id + ";";
+
+            stmt.executeUpdate(sql);
+
+        } catch (Exception se) {
+            se.printStackTrace();
+        }
+        finally {
+            // Fechando conexões
+            try {
+                if (stmt != null) {
+                    conn.close();
+                }
+            } catch (SQLException ignored) {
+
+            }
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
     }
 }

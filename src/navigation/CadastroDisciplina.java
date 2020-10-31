@@ -103,7 +103,7 @@ public class CadastroDisciplina extends JPanel{
             while (condition && i < buttons.length){
                 if (buttons[i].isSelected()){
                     condition = false;
-                    handler.cadastrarDiciplina(nmDisciplina, cargaHoraria, Integer.parseInt(buttons[i].getText()));
+                    handler.cadastrarDisciplina(nmDisciplina, cargaHoraria, Integer.parseInt(buttons[i].getText()));
                 }
                 i++;
             }

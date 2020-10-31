@@ -20,7 +20,7 @@ public class Disciplinas extends JPanel{
 	Design util = new Design();
 
 	String[] disciplinasNome = {};
-	Diciplina[] disciplinas = disciplina.getDiciplinas();
+	Diciplina[] disciplinas = disciplina.getDisciplinas();
 
 	JLabel aulas = new JLabel("Aulas por semana:");
 	JLabel carga = new JLabel("Carga horária: ");
@@ -62,12 +62,12 @@ public class Disciplinas extends JPanel{
 			disciplinasNome[disciplinasNome.length - 1] = disc.nome;
 		}
 
-		materias = new JList<String>(disciplinasNome);
+		materias = new JList<>(disciplinasNome);
 		JComponent[] jcomponent = {scrList, materias, container2, carga, cd, aulas, rb1, rb2, rb3, rb4, rb5, rb6};
 		JRadioButton[] rbList = {rb1, rb2, rb3, rb4, rb5, rb6};
 
-		for (int i = 0; i < rbList.length; i++){
-			rb.add(rbList[i]);
+		for (JRadioButton jRadioButton : rbList) {
+			rb.add(jRadioButton);
 		}
 
 		//Eventos do JList
@@ -106,8 +106,8 @@ public class Disciplinas extends JPanel{
 		cd.setLocation(10,70);
 		aulas.setLocation(x + padding, 150);
 
-		for (int i =  0; i < rbList.length; i++){
-			rbList[i].setBounds(rbc, 130, 40, h);
+		for (JRadioButton jRadioButton : rbList) {
+			jRadioButton.setBounds(rbc, 130, 40, h);
 			rbc += 50;
 		}
 	}
@@ -129,12 +129,12 @@ public class Disciplinas extends JPanel{
 
 		//botões
 		int n = 380;
-		for(int i = 0; i < botoes.length; i++){
-			botoes[i].setBounds(n, 20, 105, 50);
-			botoes[i].setBackground(util.BUTTON_COLOR);
-			botoes[i].setBorder(BorderFactory.createEmptyBorder());
-			botoes[i].setFont(util.FONT_BOLD);
-			container.add(botoes[i]);
+		for (JButton botoe : botoes) {
+			botoe.setBounds(n, 20, 105, 50);
+			botoe.setBackground(util.BUTTON_COLOR);
+			botoe.setBorder(BorderFactory.createEmptyBorder());
+			botoe.setFont(util.FONT_BOLD);
+			container.add(botoe);
 			n += 110;
 		}
 
@@ -142,7 +142,7 @@ public class Disciplinas extends JPanel{
 
 		//evento dos botões
 		buscar.addActionListener(actionEvent -> {
-			disciplinas = disciplina.getDiciplinas(eDisciplina.getText());
+			disciplinas = disciplina.getDisciplinas(eDisciplina.getText());
 			String[] disciplinasNome = {};
 			for(Diciplina disc : disciplinas){
 				disciplinasNome = Arrays.copyOf(disciplinasNome, disciplinasNome.length + 1);
@@ -153,7 +153,7 @@ public class Disciplinas extends JPanel{
 		});
 
 		atualizar.addActionListener(actionEvent -> {
-			disciplinas = disciplina.getDiciplinas(eDisciplina.getText());
+			disciplinas = disciplina.getDisciplinas(eDisciplina.getText());
 			String[] disciplinasNome = {};
 			for(Diciplina disc : disciplinas){
 				disciplinasNome = Arrays.copyOf(disciplinasNome, disciplinasNome.length + 1);
@@ -163,15 +163,8 @@ public class Disciplinas extends JPanel{
 			materias.clearSelection();
 		});
 
-		excluir.addActionListener(actionEvent -> {
-			disciplinas = disciplina.getDiciplinas(eDisciplina.getText());
-			String[] disciplinasNome = {};
-			for(Diciplina disc : disciplinas){
-				disciplinasNome = Arrays.copyOf(disciplinasNome, disciplinasNome.length + 1);
-				disciplinasNome[disciplinasNome.length - 1] = disc.nome;
-			}
-			materias.setListData(disciplinasNome);
-			materias.clearSelection();
-		});
+		excluir.addActionListener(actionEvent ->
+			disciplina.excluirDisciplina(disciplinas[materias.getSelectedIndex()].id)
+		);
 	}
 }
