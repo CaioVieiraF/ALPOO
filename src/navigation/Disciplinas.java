@@ -151,9 +151,14 @@ public class Disciplinas extends JPanel{
 		});
 
 		atualizar.addActionListener(actionEvent -> {
-
+			Diciplina novo = disciplinas[materias.getSelectedIndex()];
+			disciplina.executarQuery("UPDATE disciplinas"
+					+ "SET nome = " + novo.nome
+					+ ", dias = " + novo.dias
+					+ ", carga = " + novo.cargaHoraria
+					+ " WHERE id = " + novo.id);
 		});
 
-		excluir.addActionListener(actionEvent -> disciplina.excluirDisciplina(disciplinas[materias.getSelectedIndex()].id));
+		excluir.addActionListener(actionEvent -> disciplina.executarQuery("DELETE FROM disciplinas WHERE id = " + disciplinas[materias.getSelectedIndex()].id + ";"));
 	}
 }

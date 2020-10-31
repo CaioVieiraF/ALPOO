@@ -8,7 +8,6 @@ public class DiciplinasHandler {
 
     static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://localhost:3306/faculdade";
-//    static final String DB_URL = "jdbc:mariadb://18.231.167.221/faculdade?user=alpoo?password=password";
 
     //  Credenciais do banco
     static final String USER = "root";
@@ -175,7 +174,7 @@ public class DiciplinasHandler {
         return null;
     }
 
-    public void excluirDisciplina(int id){
+    public void executarQuery(String query){
         Connection conn = null;
         Statement stmt = null;
         try {
@@ -191,55 +190,7 @@ public class DiciplinasHandler {
             System.out.println("Coletando dados na tabela ...");
             stmt = conn.createStatement();
 
-            String sql = "DELETE FROM disciplinas WHERE id = " + id + ";";
-
-            stmt.executeUpdate(sql);
-
-        } catch (Exception se) {
-            se.printStackTrace();
-        }
-        finally {
-            // Fechando conexões
-            try {
-                if (stmt != null) {
-                    conn.close();
-                }
-            } catch (SQLException ignored) {
-
-            }
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }
-        }
-    }
-
-    public void atualizarDisciplina(Diciplina novo){
-        Connection conn = null;
-        Statement stmt = null;
-        try {
-            // Registro do driver
-            Class.forName(JDBC_DRIVER);
-
-            // Abrindo conexão
-            System.out.println("Conectando com o banco de dados...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            System.out.println("Conectado com sucesso");
-
-            // Queries
-            System.out.println("Coletando dados na tabela ...");
-            stmt = conn.createStatement();
-
-            String sql = "UPDATE disciplinas"
-                    + "SET nome = " + novo.nome
-                    + ", dias = " + novo.dias
-                    + ", carga = " + novo.cargaHoraria
-                    + " WHERE id = " + novo.id;
-
-            stmt.executeUpdate(sql);
+            stmt.executeUpdate(query);
 
         } catch (Exception se) {
             se.printStackTrace();
