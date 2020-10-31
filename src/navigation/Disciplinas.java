@@ -8,7 +8,7 @@ import java.awt.*;
 import java.util.Arrays;
 
 public class Disciplinas extends JPanel{
-	//Vari√°veis
+	//Vari·veis
 	int x = 400, w = 200, h = 30 , rbc = 10;
 	int px, py, pw, ph;
 	int p2 = 360;
@@ -21,9 +21,11 @@ public class Disciplinas extends JPanel{
 	String[] disciplinasNome = {};
 	Diciplina[] disciplinas = disciplina.getDisciplinas();
 
-	JTextField aulas = new JTextField("Aulas por semana:");
-	JTextField carga = new JTextField("Carga hor√°ria: ");
-	JTextField cd = new JTextField("C√≥digo da disciplina: ");
+	JLabel aulas = new JLabel("Aulas por semana:");
+	JTextField txtCarga = new JTextField();
+	JLabel cd = new JLabel("CÛdigo da disciplina: ");
+	
+	JLabel carga = new JLabel("Carga horaria: ");
 
 	JButton buscar= new JButton ("Buscar");
 	JButton  atualizar= new JButton ("Atualizar");
@@ -64,7 +66,7 @@ public class Disciplinas extends JPanel{
 		}
 
 		materias = new JList<>(disciplinasNome);
-		JComponent[] jcomponent = {scrList, materias, container2, carga, cd, aulas, rb1, rb2, rb3, rb4, rb5, rb6};
+		JComponent[] jcomponent = {scrList, materias, container2, carga, txtCarga, cd, aulas, rb1, rb2, rb3, rb4, rb5, rb6};
 
 		for (JRadioButton jRadioButton : rbList) {
 			rb.add(jRadioButton);
@@ -74,8 +76,8 @@ public class Disciplinas extends JPanel{
 		materias.addListSelectionListener(listSelectListener -> {
 			if(materias.getSelectedIndex() >= 0) {
 				Diciplina valor = disciplinas[materias.getSelectedIndex()];
-				carga.setText("Carga hor√°ria: " + valor.cargaHoraria);
-				cd.setText("C√≥digo da disciplina: " + valor.id);
+				txtCarga.setText(""+valor.cargaHoraria);
+				cd.setText("CÛdigo da disciplina: " + valor.id);
 				rbList[valor.dias - 1].setSelected(true);
 			}
 		});
@@ -91,7 +93,7 @@ public class Disciplinas extends JPanel{
 		container2.setLayout(null);
 		container2.setBounds(x - padding,80,330,p2);
 		container2.setBackground(WHITE);
-		container2.setBorder(BorderFactory.createTitledBorder("Informa√ß√µes"));
+		container2.setBorder(BorderFactory.createTitledBorder("InformaÁıes"));
 
         scrList.setViewportView(materias);
 		scrList.setBounds(20, 80, p2 - padding, p2);
@@ -103,6 +105,7 @@ public class Disciplinas extends JPanel{
 		}
 
 		carga.setLocation(10,10);
+		txtCarga.setLocation(150, 10);
 		cd.setLocation(10,70);
 		aulas.setLocation(x + padding, 150);
 
@@ -140,7 +143,7 @@ public class Disciplinas extends JPanel{
 
 		container.add(eDisciplina);
 
-		//evento dos bot√µes
+		//evento dos botıes
 		buscar.addActionListener(actionEvent -> {
 			disciplinas = disciplina.getDisciplinas(eDisciplina.getText());
 			atualizaLista();
@@ -157,8 +160,10 @@ public class Disciplinas extends JPanel{
 			disciplina.executarQuery("UPDATE disciplinas "
 					+ "SET nome = '" + novo.nome
 					+ "', dia = " +	rbNovo.getText()
-					+ ", carga = " + carga.getText()
+					+ ", carga = " + txtCarga.getText()
 					+ " WHERE id = " + novo.id);
+			
+			disciplinas = disciplina.getDisciplinas();
 			atualizaLista();
 
 		});

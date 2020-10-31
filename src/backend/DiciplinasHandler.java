@@ -7,10 +7,11 @@ import java.util.Arrays;
 public class DiciplinasHandler {
 
     static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:3306/faculdade";
+    static final String DB_URL = "jdbc:mysql://localhost:3306/faculdade" + "?useTimezone=true&serverTimezone=UTC";
 
     //  Credenciais do banco
     static final String USER = "root";
+    // Colocar a senha do seu servidor
     static final String PASS = "root";
 
     public void cadastrarDisciplina(JTextField nmDisciplina, JTextField cargaHoraria, int selection){
