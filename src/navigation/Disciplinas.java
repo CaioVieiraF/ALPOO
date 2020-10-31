@@ -13,6 +13,7 @@ public class Disciplinas extends JPanel{
 	int px, py, pw, ph;
 	int p2 = 360;
 	int padding = 20;
+	int ch;
 
 	DiciplinasHandler disciplina = new DiciplinasHandler();
 	Design util = new Design();
@@ -47,6 +48,8 @@ public class Disciplinas extends JPanel{
 
 	Color WHITE = new Color(255,255,255);
 
+	JRadioButton[] rbList = {rb1, rb2, rb3, rb4, rb5, rb6};
+
 	public Disciplinas(int screenW, int screenH){
         this.pw = 700;
         this.ph = 450;
@@ -62,7 +65,6 @@ public class Disciplinas extends JPanel{
 
 		materias = new JList<>(disciplinasNome);
 		JComponent[] jcomponent = {scrList, materias, container2, carga, cd, aulas, rb1, rb2, rb3, rb4, rb5, rb6};
-		JRadioButton[] rbList = {rb1, rb2, rb3, rb4, rb5, rb6};
 
 		for (JRadioButton jRadioButton : rbList) {
 			rb.add(jRadioButton);
@@ -72,7 +74,7 @@ public class Disciplinas extends JPanel{
 		materias.addListSelectionListener(listSelectListener -> {
 			if(materias.getSelectedIndex() >= 0) {
 				Diciplina valor = disciplinas[materias.getSelectedIndex()];
-				carga.setText("Carga horária: " + valor.cargaHoraria + "hr");
+				carga.setText("Carga horária: " + valor.cargaHoraria);
 				cd.setText("Código da disciplina: " + valor.id);
 				rbList[valor.dias - 1].setSelected(true);
 			}
@@ -141,24 +143,39 @@ public class Disciplinas extends JPanel{
 		//evento dos botões
 		buscar.addActionListener(actionEvent -> {
 			disciplinas = disciplina.getDisciplinas(eDisciplina.getText());
-			String[] disciplinasNome = {};
-			for(Diciplina disc : disciplinas){
-				disciplinasNome = Arrays.copyOf(disciplinasNome, disciplinasNome.length + 1);
-				disciplinasNome[disciplinasNome.length - 1] = disc.nome;
-			}
-			materias.setListData(disciplinasNome);
-			materias.clearSelection();
+			atualizaLista();
 		});
 
 		atualizar.addActionListener(actionEvent -> {
 			Diciplina novo = disciplinas[materias.getSelectedIndex()];
-			disciplina.executarQuery("UPDATE disciplinas"
-					+ "SET nome = " + novo.nome
-					+ ", dias = " + novo.dias
-					+ ", carga = " + novo.cargaHoraria
+			JRadioButton rbNovo = new JRadioButton();
+			for(JRadioButton botao : rbList){
+				if(botao.isSelected()){
+					rbNovo = botao;
+				}
+			}
+			disciplina.executarQuery("UPDATE disciplinas "
+					+ "SET nome = '" + novo.nome
+					+ "', dia = " +	rbNovo.getText()
+					+ ", carga = " + carga.getText()
 					+ " WHERE id = " + novo.id);
+			atualizaLista();
+
 		});
 
-		excluir.addActionListener(actionEvent -> disciplina.executarQuery("DELETE FROM disciplinas WHERE id = " + disciplinas[materias.getSelectedIndex()].id + ";"));
+		excluir.addActionListener(actionEvent -> {
+			disciplina.executarQuery("DELETE FROM disciplinas WHERE id = " + disciplinas[materias.getSelectedIndex()].id + ";");
+			atualizaLista();
+		});
+	}
+
+	public void atualizaLista() {
+		String[] disciplinasNome = {};
+		for(Diciplina disc : disciplinas){
+			disciplinasNome = Arrays.copyOf(disciplinasNome, disciplinasNome.length + 1);
+			disciplinasNome[disciplinasNome.length - 1] = disc.nome;
+		}
+		materias.setListData(disciplinasNome);
+		materias.clearSelection();
 	}
 }
